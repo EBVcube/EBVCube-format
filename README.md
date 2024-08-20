@@ -82,18 +82,18 @@ The following tables describe the attributes of the EBV netCDF files. Each table
 ### 2.1 General Attributes
 |Level |Attribute|Comment|Convention|User Input|Mandatory|
 | --- |  --- | --- | --- |--- | --- |
-|Global |id | An identifier for the data set, provided by and unique within its naming authority. (Currently simple integer, future: maybe DOI) |ACDD|No|-|
-|Global |  naming_authority| The organization that provides the initial id for the dataset. |ACDD|No|-|
-|Global | Conventions| A comma-separated list of the conventions that are followed by the dataset. (Currently 'ACDD-1.3, CF-1.8, EBVNetCDF-1.0') |ACDD, CF|No|-|
-|Global|		title|A short phrase or sentence describing the dataset.|ACDD, CF |Yes|Yes|
-|Global|	summary|A paragraph describing the dataset, analogous to an abstract for a paper.|ACDD|Yes|Yes|
+|Global |id | An identifier for the data set, provided by and unique within its naming authority. (Currently simple integer, currently preparing transfer to DOI) |ACDD|No|-|
+|Global |  naming_authority| The organization that provides the initial id for the dataset. Fixed value: 'The German Centre for Integrative Biodiversity Research (iDiv) Halle-Jena-Leipzig' |ACDD|No|-|
+|Global | Conventions| A comma-separated list of the conventions that are followed by the dataset. Fixed value: 'CF-1.8, ACDD-1.3, EBV-1.0' |ACDD, CF|No|-|
+|Global| title|A short phrase or sentence describing the dataset.|ACDD, CF |Yes|Yes|
+|Global| summary|A paragraph describing the dataset, analogous to an abstract for a paper.|ACDD|Yes|Yes|
 |Global |  references|Published or web-based references that describe the data or methods used to produce it.|ACDD, CF |Yes|No|
 |Global |  source | The method of production of the original data. If it was model-generated, source should name the model and its version. If it is observational, source should characterize it. |ACDD, CF|Yes|Yes|
 |Global |  project_name | The name of the project(s) principally responsible for originating this data. Multiple projects can be separated by commas.|EBV|Yes|No|
 |Global |  project_url | The URL(s) of the project(s).|EBV|Yes|No|
 |Global |  date_created |The date on which this version of the data was created.| ACDD |Yes|Yes|
-|Global |  date_issued |The date on which this data (including all modifications) was formally issued (i.e., made available to a wider audience). |ACDD|No|-|
-|Global |    creator_name|The name of the person principally responsible for creating this data.| ACDD|Yes|Yes|
+|Global |  date_issued |The date on which this data (including all modifications) was formally issued (i.e., made available to a wider audience) at the EBV Data Portal. |ACDD|No|-|
+|Global |  creator_name|The name of the person principally responsible for creating this data.| ACDD|Yes|Yes|
 |Global |   creator_email |The email address of the person principally responsible for creating this data.|ACDD |Yes|No|
 |Global |   creator_institution |The institution of the creator; should uniquely identify the creator's institution. |ACDD |Yes|Yes|
 |Global |   contributor_name |The name of any individuals, projects, or institutions that contributed to the creation of this data.|ACDD|Yes|No|
@@ -106,9 +106,9 @@ The following tables describe the attributes of the EBV netCDF files. Each table
 |Global| keywords |A comma-separated list of key words and/or phrases.|ACDD|Yes|No|
 |Global|	ebv_class|EBV Class of the dataset. |EBV|Yes|Yes|
 |Global|	ebv_name|EBV Name of the dataset. |EBV|Yes|Yes|
-|Global|  ebv_vocabulary | https://portal.geobon.org/api/v1/ebv |EBV|No|-|
+|Global|  ebv_vocabulary | URL to controlled vocabulary for ebv_class and ebv_name. Fiexed value: 'https://portal.geobon.org/api/v1/ebv' |EBV|No|-|
 |Global|  ebv_domain |Environmental domain of the dataset, one or several of ‘Terrestrial’, ‘Marine’ or ‘Freshwater’.|EBV|Yes|Yes|
-|Global|  ebv_cube_dimensions |Fixed value: "lon, lat, time, entity". |EBV|No|-|
+|Global|  ebv_cube_dimensions |Fixed value: 'lon, lat, time, entity' |EBV|No|-|
 
 ### 2.2 Scenario and Metric Attributes
 
@@ -116,7 +116,7 @@ The following tables describe the attributes of the EBV netCDF files. Each table
 | --- |  --- | --- | --- |--- | --- |
 |Metric	| standard_name	|Short group name|CF|Yes|Yes|
 |Metric|	long_name| Extensive group name / description|CF|Yes|Yes|
-|Metric|	units| Description of the units|CF|Yes|Yes|
+|Metric|	units| The units of the metrics's data. |CF|Yes|Yes|
 |Scenario|	standard_name|Short group name|CF|(Yes|No|
 |Scenario|	long_name|Extensive group name / description|CF|Yes|No|
 |Global|  ebv_scenario_classification_name |Name of the applied scenario classification (if a scenario is used – not mandatory).|EBV|Yes|No|
@@ -166,8 +166,8 @@ The entity variable is an auxiliary coordinate variable and stores all entity na
 |Global|  ebv_spatial_description |Specific information about the spatial scope.|EBV|Yes|Yes|
 |Global| geospatial_bounds_crs|The coordinate reference system (CRS) of the point coordinates in the geospatial_bounds attribute. EPSG CRSs are strongly recommended. Example: 'EPSG:4326'|ACDD|No|-|
 | Global | geospatial_bounds | Describes the data's 2D or 3D geospatial extent in OGC's Well-Known Text (WKT) Geometry format (reference the OGC Simple Feature Access (SFA) specification). Example: 'POLYGON ((40.26 -111.29, 41.26 -111.29, 41.26 -110.29, 40.26 -110.29, 40.26 -111.29))'|ACDD|No|-|
-| Global | geospatial_lat_resolution  | Information about the targeted spacing of points in latitude. Describes the resolution as a number value. |ACDD|No|-|
-| Global | geospatial_lon_resolution | Information about the targeted spacing of points in longitude. Describes the resolution as a number value. |ACDD|No|-|
+| Global | geospatial_lat_resolution  | Information about the targeted spacing of points in latitude. Describes the resolution as a numeric value and its units. |ACDD|No|-|
+| Global | geospatial_lon_resolution | Information about the targeted spacing of points in longitude. Describes the resolution as a numeric value and its units. |ACDD|No|-|
 | Global | geospatial_lat_units | Units for the longitude axis. These are presumed to be ‘degrees_north’ or ‘meters_north’. |ACDD|No|-|
 | Global | geospatial_lon_units | Units for the longitude axis. These are presumed to be ‘degrees_east’ or ‘meters_east’. |ACDD|No|-|
 
