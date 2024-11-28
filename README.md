@@ -20,7 +20,8 @@ Summary:
 ### 1.2 Example 1 (extensive)
 * Note: there would be more scenarios and/or metrics possible
 ``` bash
-├── ROOT ATTRIBUTES
+┌── root level
+├── GLOBAL ATTRIBUTES
 ├── DIMENSIONS: entity, time, lat, lon
 ├── crs [0]
 |   └── ATTRIBUTES
@@ -57,7 +58,8 @@ Summary:
 
 ### 1.3 Example 2 (minimal)
 ``` bash
-├── ROOT ATTRIBUTES
+┌── root level
+├── GLOBAL ATTRIBUTES
 ├── DIMENSIONS: entity, time, lat, lon
 ├── crs [0]
 |   └── ATTRIBUTES
