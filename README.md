@@ -9,12 +9,15 @@ The structure allows several data cubes per EBVCube netCDF file. These cubes hav
 
 The usage of hierarchical groups enables the coexistence of multiple data cubes, each sharing the same dimensions. The first hierarchical level (netCDF group) are scenarios, e.g., the modelling for different Shared Socioeconomic Pathways (SSP) scenarios. The second hierarchical level (netCDF group) represent metrics, such as the percentage of protected area per pixel or the proportional loss over a certain time span per pixel. In contrast to the scenario-level (which is not mandatory), each EBVCube netCDF must have at least one metric. All metrics are repeated per scenario, if any are present. The number of scenarios and metrics included in the data sets can and will vary. 
 
+The EBV data cubes (netCDF variables named 'ebv_cube') are defined as four dimensional arrays: longitude, latitude, time and biological entity. These dimensions are defined at the root level of the netCDF file. Longitude and latitude are spatial dimensions that determine the geographical extent and resolution of the data. The time dimension is the only unlimited dimension. This allows updating the datasets adding new temporal EBV monitoring information. For each of these three dimensions a coordinate variable is added to the root level following the CF Convention. The fourth dimension, the biological entity, can encompass different species or groups of species, ecosystem types or other biological categories contained in any EBV measurement. This information is stored in a character array named ‘entity’ at the root level. In the CF terminology this is called an auxiliary coordinate variable. 
+
 Summary: 
 * Two possible nested sub-groups: scenario and metric
 * Metric is a mandatory group, scenario is optional
 * The scenario group is always higher than the metric
 * If several metrics are present, they need to be repeated for all scenarios
 * Hence several 4D cubes (one per metric) are possible
+* The dimensions of the 4D cubes are: longitude, latitude, time and entity
 
 ![vis_4d](https://github.com/user-attachments/assets/760e7d11-3370-429c-8371-532b66dbc5ee)
 ### 1.2 Example 1 (extensive)
