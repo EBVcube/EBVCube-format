@@ -21,7 +21,7 @@ Summary:
 
 ![vis_4d](https://github.com/user-attachments/assets/760e7d11-3370-429c-8371-532b66dbc5ee)
 ### 1.2 Example 1 (extensive)
-* Note: there would be more scenarios and/or metrics possible
+* Note: more scenarios and/or metrics possible
 ``` bash
 ┌── root level
 ├── GLOBAL ATTRIBUTES
