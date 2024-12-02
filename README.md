@@ -84,7 +84,7 @@ Summary:
 ## 2 Metadata
 The following tables describe the attributes of the EBV netCDF files. Each table corresponds to a different component in the netCDF. The descriptions of the attributes that are derived from the ACDD, are directly cited from the [ACDD 1.3 documentation](https://wiki.esipfed.org/Attribute_Convention_for_Data_Discovery_1-3). The fifth column (User input) marks all the attributes that need to be defined by the publisher. The sixth column (Mandatory) shows wether this input by the publisher is mandatory.
 
-### 2.1 General Attributes
+### 2.1 Global Attributes
 |Level |Attribute|Comment|Convention|User Input|Mandatory|
 | --- |  --- | --- | --- |--- | --- |
 |Root |id | An identifier for the data set, provided by and unique within its naming authority. (Currently simple integer, currently preparing transfer to DOI) |ACDD|No|-|
@@ -114,32 +114,42 @@ The following tables describe the attributes of the EBV netCDF files. Each table
 |Root|  ebv_vocabulary | URL to controlled vocabulary for ebv_class and ebv_name. Fiexed value: 'https://portal.geobon.org/api/v1/ebv' |EBV|No|-|
 |Root|  ebv_domain |Environmental domain of the dataset, one or several of ‘Terrestrial’, ‘Marine’ or ‘Freshwater’.|EBV|Yes|Yes|
 |Root|  ebv_cube_dimensions |Fixed value: 'lon, lat, time, entity' |EBV|No|-|
+|Root|  ebv_scenario_classification_name |Name of the applied scenario classification (if a scenario is used – not mandatory).|EBV|Yes|No|
+|Root|  ebv_scenario_classification_version |Version of the scenario classification (if a scenario is used – not mandatory).|EBV|Yes|No|
+|Root|  ebv_scenario_classification_url |URL of the scenario classification (if a scenario is used – not mandatory).|EBV|Yes|No|
+|Root|  ebv_spatial_scope |Spatial scope of the dataset, either ‘Continental/ Regional’, ‘National’, ‘Sub-national/Local’ or ‘Global’.|EBV|Yes|Yes|
+|Root|  ebv_spatial_description |Specific information about the spatial scope.|EBV|Yes|Yes|
+|Root| geospatial_bounds_crs|The coordinate reference system (CRS) of the point coordinates in the geospatial_bounds attribute. EPSG CRSs are strongly recommended. Example: 'EPSG:4326'|ACDD|No|-|
+| Root | geospatial_bounds | Describes the data's 2D or 3D geospatial extent in OGC's Well-Known Text (WKT) Geometry format (reference the OGC Simple Feature Access (SFA) specification). Example: 'POLYGON ((40.26 -111.29, 41.26 -111.29, 41.26 -110.29, 40.26 -110.29, 40.26 -111.29))'|ACDD|No|-|
+| Root | geospatial_lat_resolution  | Information about the targeted spacing of points in latitude. Describes the resolution as a numeric value and its units. |ACDD|No|-|
+| Root | geospatial_lon_resolution | Information about the targeted spacing of points in longitude. Describes the resolution as a numeric value and its units. |ACDD|No|-|
+| Root | geospatial_lat_units | Units for the longitude axis. These are presumed to be ‘degrees_north’ or ‘meters_north’. |ACDD|No|-|
+| Root | geospatial_lon_units | Units for the longitude axis. These are presumed to be ‘degrees_east’ or ‘meters_east’. |ACDD|No|-|
+| Root | time_coverage_start | Describes the time of the first data point in the data set (ISO 8601:2004 date format). |ACDD|Yes|Yes|
+| Root | time_coverage_end | Describes the time of the last data point in the data set (ISO 8601:2004 date format). |ACDD|Yes|Yes|
+| Root | time_coverage_resolution | Describes the targeted time period between each value in the data set (ISO 8601:2004 date format). |ACDD|Yes|Yes|
 
 ### 2.2 Scenario and Metric Attributes
-
 |Level |Attribute|Comment|Convention|User Input|Mandatory|
 | --- |  --- | --- | --- |--- | --- |
 |Metric	| standard_name	|Short group name|CF|Yes|Yes|
 |Metric|	long_name| Extensive group name / description|CF|Yes|Yes|
 |Metric|	units| The units of the metrics's data. |CF|Yes|Yes|
-|Scenario|	standard_name|Short group name|CF|(Yes|No|
+|Scenario|	standard_name|Short group name|CF|Yes|No|
 |Scenario|	long_name|Extensive group name / description|CF|Yes|No|
-|Root|  ebv_scenario_classification_name |Name of the applied scenario classification (if a scenario is used – not mandatory).|EBV|Yes|No|
-|Root|  ebv_scenario_classification_version |Version of the scenario classification (if a scenario is used – not mandatory).|EBV|Yes|No|
-|Root|  ebv_scenario_classification_url |URL of the scenario classification (if a scenario is used – not mandatory).|EBV|Yes|No|
 
-### 2.3 ebv_cube variable attributes
+### 2.3 Data cube attributes
 |Level |Attribute|Comment|Convention|User Input|Mandatory|
 | --- |  --- | --- | --- |--- | --- |
 | ebv_cube | grid_mapping | Fixed value: '/crs' (Pointer to the coordinate reference system variable.) | CF|No|-|
-| ebv_cube | long_name | Currently redundant to the standard_name of the corresponding metric. Will be updated in a future version. | CF|Yes|Yes|
+| ebv_cube | long_name | Currently redundant to the standard_name of the corresponding metric. Will be updated in a future version. | CF, ACDD|Yes|Yes|
 | ebv_cube | coordinates | Fixed value: '/entity' (Pointer to the coordinate variable holding the string values.) | CF|No|-|
-| ebv_cube | units | Currently redundant the units of the corresponding metric. Will be updated in a future version. | CF|Yes|Yes|
-| ebv_cube | coverage_content_type | An ISO 19115-1 code to indicate the source of the data (image, thematicClassification, physicalMeasurement, auxiliaryInformation, qualityInformation, referenceInformation, modelResult, or coordinate). | CF|Yes|Yes|
+| ebv_cube | units | Currently redundant the units of the corresponding metric. Will be updated in a future version. | CF, ACDD|Yes|Yes|
+| ebv_cube | coverage_content_type | An ISO 19115-1 code to indicate the source of the data (image, thematicClassification, physicalMeasurement, auxiliaryInformation, qualityInformation, referenceInformation, modelResult, or coordinate). | ACDD|Yes|Yes|
 | ebv_cube | _FillValue | internal netCDF attribute | netCDF Convention, CF |No|-|
 | ebv_cube | _ChunkSizes | internal netCDF attribute | netCDF Convention |No|-|
 
-### 2.4 entity Variable Attributes
+### 2.4 Entity Attributes
 The entity variable is an auxiliary coordinate variable and stores all entity names as a character array.
 
 |Level |Attribute|Comment|Convention|User Input|Mandatory|
@@ -151,7 +161,9 @@ The entity variable is an auxiliary coordinate variable and stores all entity na
 |entity| units |Fixed value: '1' for 'unity' (udunits)|CF|No|-|
 |entity| long_name |Fixed value: 'entity' |CF|No|-|
 
-### 2.5 Spatial Attributes
+
+### 2.5 Coordinate reference system Attributes
+EXPLAIN grdi mapping names -> link 
 |Level |Attribute|Comment|Convention|User Input|Mandatory|
 | --- |  --- | --- | --- |--- | --- |
 | crs | grid_mapping_name | String value that contains the mapping’s name, e.g., WGS84 has the value 'latitude_longitude'.  | CF |No|-|
@@ -159,6 +171,10 @@ The entity variable is an auxiliary coordinate variable and stores all entity na
 | crs | spatial_ref |  WKT2 representation of CRS |GDAL|No|-|
 | crs | GeoTransform |  GeoTransform array: 'x_ul x_res x_rotation y_ul y_rotation y_res' |GDAL|No|-|
 | crs | long_name | Fixed value: 'CRS definition'|CF| No|-|
+
+### 2.6 Latitude and longitude attributes
+|Level |Attribute|Comment|Convention|User Input|Mandatory|
+| --- |  --- | --- | --- |--- | --- |
 | lon | axis |Fixed value: 'X' |CF|No|-|
 | lon | units | 'degree_east' or 'meter' |CF|No|-|
 | lon | standard_name | 'longitude' or 'projection_x_coordinate' |CF|No|-|
@@ -167,16 +183,8 @@ The entity variable is an auxiliary coordinate variable and stores all entity na
 | lat | units | 'degree_north' or 'meter' |CF|No|-|
 | lat | standard_name | 'latitude' or 'projection_x_coordinate' |CF|No|-|
 | lat | long_name | 'lat' |CF|No|-|
-|Root|  ebv_spatial_scope |Spatial scope of the dataset, either ‘Continental/ Regional’, ‘National’, ‘Sub-national/Local’ or ‘Global’.|EBV|Yes|Yes|
-|Root|  ebv_spatial_description |Specific information about the spatial scope.|EBV|Yes|Yes|
-|Root| geospatial_bounds_crs|The coordinate reference system (CRS) of the point coordinates in the geospatial_bounds attribute. EPSG CRSs are strongly recommended. Example: 'EPSG:4326'|ACDD|No|-|
-| Root | geospatial_bounds | Describes the data's 2D or 3D geospatial extent in OGC's Well-Known Text (WKT) Geometry format (reference the OGC Simple Feature Access (SFA) specification). Example: 'POLYGON ((40.26 -111.29, 41.26 -111.29, 41.26 -110.29, 40.26 -110.29, 40.26 -111.29))'|ACDD|No|-|
-| Root | geospatial_lat_resolution  | Information about the targeted spacing of points in latitude. Describes the resolution as a numeric value and its units. |ACDD|No|-|
-| Root | geospatial_lon_resolution | Information about the targeted spacing of points in longitude. Describes the resolution as a numeric value and its units. |ACDD|No|-|
-| Root | geospatial_lat_units | Units for the longitude axis. These are presumed to be ‘degrees_north’ or ‘meters_north’. |ACDD|No|-|
-| Root | geospatial_lon_units | Units for the longitude axis. These are presumed to be ‘degrees_east’ or ‘meters_east’. |ACDD|No|-|
 
-### 2.6 Temporal Attributes
+### 2.7 Temporal Attributes
 |Level |Attribute|Comment|Convention|User Input|Mandatory|
 | --- |  --- | --- | --- |--- | --- |
 | time | axis | Fixed value:  'T' | CF |No|-|
@@ -184,6 +192,4 @@ The entity variable is an auxiliary coordinate variable and stores all entity na
 | time | units | Fixed value:  'days since 1860-01-01 00:00:00.0' | CF |No|-|
 | time | long_name | Fixed value:  'time' | CF |No|-|
 | time | _ChunkSizes |internal netCDF attribute | netCDF Convention|No|-|
-| Root | time_coverage_start | Describes the time of the first data point in the data set (ISO 8601:2004 date format). |ACDD|Yes|Yes|
-| Root | time_coverage_end | Describes the time of the last data point in the data set (ISO 8601:2004 date format). |ACDD|Yes|Yes|
-| Global | time_coverage_resolution | Describes the targeted time period between each value in the data set (ISO 8601:2004 date format). |ACDD|Yes|Yes|
+
