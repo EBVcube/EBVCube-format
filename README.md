@@ -106,7 +106,7 @@ The following tables describe the attributes of the EBV netCDF files. Each table
 |Root |   publisher_email |The email address of the person responsible for publishing the data file or product to users, with its current metadata and format. |ACDD|Yes|Yes|
 |Root |   publisher_institution| The institution that presented the data file or equivalent product to users; should uniquely identify the institution.| ACDD|Yes|Yes|
 |Root |   license |Provide the URL to a standard or specific license, enter "Freely Distributed" or "None", or describe any restrictions to data access and distribution in free text. |ACDD|Yes|Yes|
-|Root |   history |Provides an audit trail for modifications to the original data. |ACDD, CF|No|-|
+|Root |   history |Provides an audit trail for modifications to the original data. |ACDD, CF, netCDF Convention|No|-|
 |Root |   comment | Miscellaneous information about the data, not captured elsewhere.|ACDD|Yes|No|
 |Root| keywords |A comma-separated list of key words and/or phrases.|ACDD|Yes|No|
 |Root|	ebv_class|EBV Class of the dataset. |EBV|Yes|Yes|
