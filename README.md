@@ -3,7 +3,7 @@ This document defines the EBVCube format. This specification was developed at th
 
 The files are based on the Network Common Data Form ([netCDF](https://www.unidata.ucar.edu/software/netcdf/documentation/4.7.4-pre/attribute_conventions.html)). Additionally, it follows the Climate and Forecast Conventions ([CF, version 1.8](https://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-conventions.html)) and the Attribute Convention for Data Discovery ([ACDD, version 1.3](https://wiki.esipfed.org/Attribute_Convention_for_Data_Discovery_1-3)). This data format complements the Essential Biodiversity Variables framework ([EBV](https://geobon.org/ebvs/what-are-ebvs/)).
 
-## 1 Internal hierarchy
+## 1 Hierarchical data structure
 ### 1.1 Description
 The structure allows several data cubes per EBVCube netCDF file. These cubes have four dimensions: longitude, latitude, time and entity, whereby the last dimension can, e.g., encompass different species or groups of species, ecosystem types or other. Each cube holds data of a specific metric. 
 
@@ -80,7 +80,6 @@ Summary:
         └── ATTRIBUTES
 
 ```
-
 ## 2 Metadata
 The following tables describe the attributes of the EBV netCDF files. Each table corresponds to a different component in the netCDF. The descriptions of the attributes that are derived from the ACDD, are directly cited from the [ACDD 1.3 documentation](https://wiki.esipfed.org/Attribute_Convention_for_Data_Discovery_1-3). The fifth column (User input) marks all the attributes that need to be defined by the publisher. The sixth column (Mandatory) shows wether this input by the publisher is mandatory.
 
@@ -192,4 +191,7 @@ EXPLAIN grdi mapping names -> link
 | time | units | Fixed value:  'days since 1860-01-01 00:00:00.0' | CF |No|-|
 | time | long_name | Fixed value:  'time' | CF |No|-|
 | time | _ChunkSizes |internal netCDF attribute | netCDF Convention|No|-|
+
+## 3. Tools for creation
+The creation of the EBVCube netCDF is supported via the ebvcube R package. You can find the most recent development version [here](https://github.com/EBVcube/ebvcube/tree/dev) on GitHub. The package is also published on [CRAN](https://cran.r-project.org/web/packages/ebvcube/). The [Readme]([https://github.com/EBVcube/ebvcube/blob/dev/README.md](https://github.com/EBVcube/ebvcube/blob/main/README.md#34-take-a-peek-on-the-creation-of-an-ebv-netcdf)) of the GitHub repository explains shortly the workflow for the creation. The [How-To](https://portal.geobon.org/downloads/pdf/how_to_ebv-portal.pdf) on the EBV Data Portal has a section ('8. Training resources') summarizing different ressources including code examples for the creation of EBVCube netCDFs.
 
