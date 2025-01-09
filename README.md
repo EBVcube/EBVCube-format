@@ -1,5 +1,14 @@
 # EBVCube-format
-This document defines the EBVCube format. This specification was developed at the [Biodiversity and Conservation](https://www.idiv.de/en/groups-and-people/core-groups/biodiversity-conservation.html) core group at iDiv: Luise Quoß, Christian Langer, Lina Estupinan Suarez, Miguel Fernandez, Andres Marmol, Emmanuel Oceguera, Jose Valdez, Nestor Fernandez and Henrique M. Pereira.
+This document defines the EBVCube format. This specification was developed at the [Biodiversity and Conservation](https://www.idiv.de/en/groups-and-people/core-groups/biodiversity-conservation.html) core group at iDiv: Luise Quoß <a href="https://orcid.org/0000-0002-9910-1252" target="_top"><img alt="ORCID iD" src="https://cran.r-project.org/web/orcid.svg" style="width:16px; height:16px; margin-left:4px; margin-right:4px; vertical-align:middle"></a>, 
+Christian Langer <a href="https://orcid.org/0000-0003-1446-3527" target="_top"><img alt="ORCID iD" src="https://cran.r-project.org/web/orcid.svg" style="width:16px; height:16px; margin-left:4px; margin-right:4px; vertical-align:middle"></a>, 
+Lina Estupinan Suarez, 
+Miguel Fernandez, 
+Andres Marmol <a href="https://orcid.org/0000-0001-9316-540X" target="_top"><img alt="ORCID iD" src="https://cran.r-project.org/web/orcid.svg" style="width:16px; height:16px; margin-left:4px; margin-right:4px; vertical-align:middle"></a>, 
+Emmanuel Oceguera <a href="https://orcid.org/0009-0008-0107-9298" target="_top"><img alt="ORCID iD" src="https://cran.r-project.org/web/orcid.svg" style="width:16px; height:16px; margin-left:4px; margin-right:4px; vertical-align:middle"></a>, 
+Jose Valdez  <a href="https://orcid.org/0000-0003-2690-9952" target="_top"><img alt="ORCID iD" src="https://cran.r-project.org/web/orcid.svg" style="width:16px; height:16px; margin-left:4px; margin-right:4px; vertical-align:middle"></a>, 
+Nestor Fernandez  <a href="https://orcid.org/0000-0002-9645-8571" target="_top"><img alt="ORCID iD" src="https://cran.r-project.org/web/orcid.svg" style="width:16px; height:16px; margin-left:4px; margin-right:4px; vertical-align:middle"></a> and 
+Henrique M. Pereira  <a href="https://orcid.org/0000-0003-1043-1675" target="_top"><img alt="ORCID iD" src="https://cran.r-project.org/web/orcid.svg" style="width:16px; height:16px; margin-left:4px; margin-right:4px; vertical-align:middle"></a>.
+
 
 
 The files are based on the Network Common Data Form ([netCDF](https://www.unidata.ucar.edu/software/netcdf/documentation/4.7.4-pre/attribute_conventions.html)). Additionally, it follows the Climate and Forecast Conventions ([CF, version 1.8](https://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-conventions.html)) and the Attribute Convention for Data Discovery ([ACDD, version 1.3](https://wiki.esipfed.org/Attribute_Convention_for_Data_Discovery_1-3)). This data format complements the Essential Biodiversity Variables framework ([EBV](https://geobon.org/ebvs/what-are-ebvs/)).
