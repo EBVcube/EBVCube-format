@@ -1,8 +1,8 @@
 # EBVCube-format
 This document defines the EBVCube format. This specification was developed at the [Biodiversity and Conservation](https://www.idiv.de/en/groups-and-people/core-groups/biodiversity-conservation.html) core group at iDiv: Luise Quoß <a href="https://orcid.org/0000-0002-9910-1252" target="_top"><img alt="ORCID iD" src="https://cran.r-project.org/web/orcid.svg" style="width:16px; height:16px; margin-left:4px; margin-right:4px; vertical-align:middle"></a>, 
 Christian Langer <a href="https://orcid.org/0000-0003-1446-3527" target="_top"><img alt="ORCID iD" src="https://cran.r-project.org/web/orcid.svg" style="width:16px; height:16px; margin-left:4px; margin-right:4px; vertical-align:middle"></a>, 
-Lina Estupinan Suarez, 
-Miguel Fernandez, 
+Lina Estupinan Suarez <a href="https://orcid.org/0000-0002-2359-9496" target="_top"><img alt="ORCID iD" src="https://cran.r-project.org/web/orcid.svg" style="width:16px; height:16px; margin-left:4px; margin-right:4px; vertical-align:middle"></a>, 
+Miguel Fernandez <a href="https://orcid.org/0000-0002-8301-1340" target="_top"><img alt="ORCID iD" src="https://cran.r-project.org/web/orcid.svg" style="width:16px; height:16px; margin-left:4px; margin-right:4px; vertical-align:middle"></a>, 
 Andres Marmol <a href="https://orcid.org/0000-0001-9316-540X" target="_top"><img alt="ORCID iD" src="https://cran.r-project.org/web/orcid.svg" style="width:16px; height:16px; margin-left:4px; margin-right:4px; vertical-align:middle"></a>, 
 Emmanuel Oceguera <a href="https://orcid.org/0009-0008-0107-9298" target="_top"><img alt="ORCID iD" src="https://cran.r-project.org/web/orcid.svg" style="width:16px; height:16px; margin-left:4px; margin-right:4px; vertical-align:middle"></a>, 
 Jose Valdez  <a href="https://orcid.org/0000-0003-2690-9952" target="_top"><img alt="ORCID iD" src="https://cran.r-project.org/web/orcid.svg" style="width:16px; height:16px; margin-left:4px; margin-right:4px; vertical-align:middle"></a>, 
