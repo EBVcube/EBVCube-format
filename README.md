@@ -176,33 +176,7 @@ The data cubes (ebv_cube) are [netCDF variables](https://cfconventions.org/Data/
 | ebv_cube | _FillValue | internal netCDF attribute | netCDF Convention, CF |No|-|
 | ebv_cube | _ChunkSizes | internal netCDF attribute | netCDF Convention |No|-|
 
-### 2.4 Entity attributes
-The entity variable is an [auxiliary coordinate variable](https://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-conventions.html#labels) and stores all entity names as a character array. The *ebv_entity_\** attributes are also included in the JSON files. 
-
-|Level |Attribute|Comment|Convention|User Input|Mandatory|
-| --- |  --- | --- | --- |--- | --- |
-|entity| ebv_entity_type |EBV entity type, e.g., ‘Communities’.|EBV|Yes|Yes|
-|entity| ebv_entity_scope |Specifies the entity scope in more detail, e.g., ‘Birds, Forest Birds, Non Forest Birds’|EBV|Yes|Yes|
-|entity| ebv_entity_classification_name|Name of the classification system used for the entity types (optional). |EBV|Yes|No|
-|entity| ebv_entity_classification_url |URL of the classification system used for the entity types (optional).|EBV|Yes|No|
-|entity| units |Fixed value: '1' for 'unity' (udunits)|CF|No|-|
-|entity| long_name |Fixed value: 'entity' |CF|No|-|
-
-
-### 2.5 Coordinate reference system attributes <a name='crs'></a> 
-All attributes regarding the georeferencing can be found at the 'crs' variable in the EBVCube netCDFs. The georeferencing is following the [grip mappings](https://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-conventions.html#grid-mappings-and-projections) by the CF convention. Therefore the attributes differ based on the coordinate reference system. Read the [CF convention section](https://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-conventions.html#appendix-grid-mappings) for more information. Additionally, the *GeoTransform* and *spatial_ref* attributes are added based on the [netCDF GDAL definitions](https://gdal.org/en/stable/drivers/raster/netcdf.html#georeference). These attributes cannot be found in the JSON files.
-
-FYI: In principle, you can assign all CRSs available in the PROJ library to an EBVCube netCDF. The only restriction is currently the visualization in the map of the EBV Data Portal by the company GeoEngine, which only works for EPSG-based CRSs.  
-
-|Level |Attribute|Comment|Convention|User Input|Mandatory|
-| --- |  --- | --- | --- |--- | --- |
-| crs | grid_mapping_name | String value that contains the mapping’s name, e.g., WGS84 has the value 'latitude_longitude'.  | CF |No|-|
-| crs | * | Attributes that define a specific mapping depend on the value of ‘grid_mapping_name’ (FGDC "Content Standard for Digital Geospatial Metadata"), e.g., for WGS84: ‘longitude_of_prime_meridian’, ‘semi_major_axis’ and ‘inverse_flattening’.| CF|No|-|
-| crs | spatial_ref |  WKT2 representation of CRS |GDAL|No|-|
-| crs | GeoTransform |  GeoTransform array: 'x_ul x_res x_rotation y_ul y_rotation y_res' |GDAL|No|-|
-| crs | long_name | Fixed value: 'CRS definition'|CF| No|-|
-
-### 2.6 Latitude and longitude attributes
+### 2.4 Latitude and longitude attributes
 The [lat](https://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-conventions.html#latitude-coordinate) and [lon](https://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-conventions.html#longitude-coordinate) are coordinate variables. The lon and lat dimensions are the basis for these two one-dimensional vectors, which contain the lon/lat values of the CRS of the data set. The lat and lon attributes follow the CF convention for [Horizontal Coordinate Reference Systems](https://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-conventions.html#grid-mappings-and-projections). These attributes cannot be found in the JSON files.
 
 |Level |Attribute|Comment|Convention|User Input|Mandatory|
@@ -216,7 +190,7 @@ The [lat](https://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-co
 | lat | standard_name | 'latitude' or 'projection_x_coordinate' |CF|No|-|
 | lat | long_name | 'lat' |CF|No|-|
 
-### 2.7 Temporal attributes
+### 2.5 Temporal attributes
 The [time](https://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-conventions.html#time-coordinate) is a coordinate variables. This one-dimensional vector is based on the time dimension. It holds the 'days since 1860' as integer values. These attributes cannot be found in the JSON files.
 
 |Level |Attribute|Comment|Convention|User Input|Mandatory|
@@ -226,6 +200,31 @@ The [time](https://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-c
 | time | units | Fixed value:  'days since 1860-01-01 00:00:00.0' | CF |No|-|
 | time | long_name | Fixed value:  'time' | CF |No|-|
 | time | _ChunkSizes |internal netCDF attribute | netCDF Convention|No|-|
+
+### 2.6 Entity attributes
+The entity variable is an [auxiliary coordinate variable](https://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-conventions.html#labels) and stores all entity names as a character array. The *ebv_entity_\** attributes are also included in the JSON files. 
+
+|Level |Attribute|Comment|Convention|User Input|Mandatory|
+| --- |  --- | --- | --- |--- | --- |
+|entity| ebv_entity_type |EBV entity type, e.g., ‘Communities’.|EBV|Yes|Yes|
+|entity| ebv_entity_scope |Specifies the entity scope in more detail, e.g., ‘Birds, Forest Birds, Non Forest Birds’|EBV|Yes|Yes|
+|entity| ebv_entity_classification_name|Name of the classification system used for the entity types (optional). |EBV|Yes|No|
+|entity| ebv_entity_classification_url |URL of the classification system used for the entity types (optional).|EBV|Yes|No|
+|entity| units |Fixed value: '1' for 'unity' (udunits)|CF|No|-|
+|entity| long_name |Fixed value: 'entity' |CF|No|-|
+
+### 2.7 Coordinate reference system attributes <a name='crs'></a> 
+All attributes regarding the georeferencing can be found at the 'crs' variable in the EBVCube netCDFs. The georeferencing is following the [grip mappings](https://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-conventions.html#grid-mappings-and-projections) by the CF convention. Therefore the attributes differ based on the coordinate reference system. Read the [CF convention section](https://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-conventions.html#appendix-grid-mappings) for more information. Additionally, the *GeoTransform* and *spatial_ref* attributes are added based on the netCDF definitions by [GDAL](https://gdal.org/en/stable/drivers/raster/netcdf.html#georeference). These attributes cannot be found in the JSON files.
+
+FYI: In principle, you can assign all CRSs available in the PROJ library to an EBVCube netCDF. The only restriction is currently the visualization in the map of the EBV Data Portal by the company GeoEngine, which only works for EPSG-based CRSs.  
+
+|Level |Attribute|Comment|Convention|User Input|Mandatory|
+| --- |  --- | --- | --- |--- | --- |
+| crs | grid_mapping_name | String value that contains the mapping’s name, e.g., WGS84 has the value 'latitude_longitude'.  | CF |No|-|
+| crs | * | Attributes that define a specific mapping depend on the value of ‘grid_mapping_name’ (FGDC "Content Standard for Digital Geospatial Metadata"), e.g., for WGS84: ‘longitude_of_prime_meridian’, ‘semi_major_axis’ and ‘inverse_flattening’.| CF|No|-|
+| crs | spatial_ref |  WKT2 representation of CRS |GDAL|No|-|
+| crs | GeoTransform |  GeoTransform array: 'x_ul x_res x_rotation y_ul y_rotation y_res' |GDAL|No|-|
+| crs | long_name | Fixed value: 'CRS definition'|CF| No|-|
 
 ## 3. Tools 
 ### 3.1 Exploring EBVCubes
