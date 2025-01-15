@@ -188,7 +188,7 @@ The entity variable is an [auxiliary coordinate variable](https://cfconventions.
 
 
 ### 2.5 Coordinate reference system attributes <a name='crs'></a> 
-All attributes regarding the georeferencing can be found at the 'crs' variable in the EBVCube netCDFs. The georeferencing is following the [grip mappings](https://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-conventions.html#grid-mappings-and-projections) by the CF convention. Therefore the attributes differ based on the coordinate reference system. Read the CF convention page for more information. Additionally, the *GeoTransform* and *spatial_ref* attributes are added based on the [netCDF GDAL definitions](https://gdal.org/en/stable/drivers/raster/netcdf.html#georeference). 
+All attributes regarding the georeferencing can be found at the 'crs' variable in the EBVCube netCDFs. The georeferencing is following the [grip mappings](https://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-conventions.html#grid-mappings-and-projections) by the CF convention. Therefore the attributes differ based on the coordinate reference system. Read the [CF convention section](https://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-conventions.html#appendix-grid-mappings) for more information. Additionally, the *GeoTransform* and *spatial_ref* attributes are added based on the [netCDF GDAL definitions](https://gdal.org/en/stable/drivers/raster/netcdf.html#georeference). These attributes cannot be found in the JSON files.
 
 FYI: In principle, you can assign all CRSs available in the PROJ library to an EBVCube netCDF. The only restriction is currently the visualization in the map of the EBV Data Portal by the company GeoEngine, which only works for EPSG-based CRSs.  
 
@@ -201,6 +201,8 @@ FYI: In principle, you can assign all CRSs available in the PROJ library to an E
 | crs | long_name | Fixed value: 'CRS definition'|CF| No|-|
 
 ### 2.6 Latitude and longitude attributes
+The [lat](https://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-conventions.html#latitude-coordinate) and [lon](https://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-conventions.html#longitude-coordinate) are coordinate variables. The lon and lat dimensions are the basis for these two one-dimensional vectors, which contain the lon/lat values of the CRS of the data set. The lat and lon attributes follow the CF convention for [Horizontal Coordinate Reference Systems](https://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-conventions.html#grid-mappings-and-projections). These attributes cannot be found in the JSON files.
+
 |Level |Attribute|Comment|Convention|User Input|Mandatory|
 | --- |  --- | --- | --- |--- | --- |
 | lon | axis |Fixed value: 'X' |CF|No|-|
@@ -213,6 +215,8 @@ FYI: In principle, you can assign all CRSs available in the PROJ library to an E
 | lat | long_name | 'lat' |CF|No|-|
 
 ### 2.7 Temporal attributes
+The [time](https://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-conventions.html#time-coordinate) is a coordinate variables. This one-dimensional vector is based on the time dimension. It holds the 'days since 1860' as integer values. These attributes cannot be found in the JSON files.
+
 |Level |Attribute|Comment|Convention|User Input|Mandatory|
 | --- |  --- | --- | --- |--- | --- |
 | time | axis | Fixed value:  'T' | CF |No|-|
