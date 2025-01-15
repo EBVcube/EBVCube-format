@@ -13,7 +13,10 @@ The files are based on the Network Common Data Form ([netCDF](https://www.unidat
 
 ## 1 Hierarchical data structure
 ### 1.1 Description
-The EBVCube netCDF file structure supports multiple data cubes. These cubes have four dimensions: longitude, latitude, time and entity, whereby the last dimension can, e.g., encompass various biological or ecological categories, such as species, species groups, ecosystem types, or other groupings. Each cube holds data of a specific metric. See [figure](#figure1) below.
+The EBVCube netCDF file structure supports multiple data cubes. These cubes have four dimensions: longitude, latitude, time and entity (see [figure 1](#figure_cube), whereby the last dimension can, e.g., encompass various biological or ecological categories, such as species, species groups, ecosystem types, or other groupings. Each cube holds data of a specific metric. See the [figure 2](#full_figure) of the full EBVCube netCDF structure.
+
+##### Figure 1: EBV data cube 
+<img name = figure_cube src="https://github.com/user-attachments/assets/35c7fb42-7821-4e0c-acf5-fa80c8cc4c2a" width="300">
 
 The use of hierarchical groups allows multiple data cubes to coexist, with common dimensions across all cubes. The first hierarchical level (netCDF group) represents scenarios, such as various Shared Socioeconomic Pathways (SSP) scenarios used in modeling. The second hierarchical level (netCDF group) represents metrics, such as the percentage of protected area per pixel or the proportional loss over a certain time span per pixel. While the scenario-level is optional (no mandatory), each EBVCube netCDF must include at least one metric. If scenarios are included, all metrics must be repeated for each scenario. The number of scenarios and metrics included in the data sets can and will vary. 
 
@@ -26,7 +29,7 @@ Summary:
 * If several metrics are present, they need to be repeated for all scenarios
 * Hence several 4D data cubes (one per scenario-metric-path or metric-path) are possible
 * The dimensions of the 4D data cubes are: longitude, latitude, time and entity
-<a name='figure1'></a> 
+<a name='full_figure'></a> 
 
 ![vis_4d](https://github.com/user-attachments/assets/760e7d11-3370-429c-8371-532b66dbc5ee) 
 
