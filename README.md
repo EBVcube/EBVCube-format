@@ -229,7 +229,9 @@ FYI: In principle, you can assign all CRSs available in the PROJ library to an E
 ## 3. Tools 
 ### 3.1 Exploring EBVCubes
 To discover the EBV netCDFs in full detail, we recommend [Panoply](https://www.giss.nasa.gov/tools/panoply/). This is a software developed by NASA to generally open HDF5/netCDF files. This tool allows you to see all components of the netCDF including the internal hierarchy and all attribues. Besides, it has a plot function. This can be a bit overwhelming as you also see all the distributed technical components and attributes. But it is a very nice way to deeply understand the EBV netCDFs without code. 
+
 You can also download and open the EBVCube netCDFs directly in your R code with the [ebvcube R package](https://github.com/EBVcube/ebvcube). This package bundles all the important metadata for you and hides all ‘unnecessary’ technical stuff. Also, you can directly start working with the data. It provides some easy high-level functions to, e.g., directly visualize or subset the data as you like.
+
 In addition, we have developed a QGIS plugin called [EBVCubeVisualizer](https://github.com/EBVcube/EBVCubeVisualizer). This plugin allows the user to explore the full metadata and hierarchical structure of EBVCube datasets, similar to the Panoply software - but directly in QGIS. It strikes a good balance between displaying the full structure and metadata while hiding technical components and attributes (in contrast to Panoply) for improved user-friendliness. It allows users to extract and visualize specific slices from EBV data cubes, with flexible selection by time, entity, scenario and metric. As with all other layers in QGIS, you can use all geospatial tools directly. 
 
 ### 3.2 Creation of EBVCubes
