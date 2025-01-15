@@ -34,7 +34,7 @@ Summary:
 ### 1.2 Example 1 (extensive)
 This is a simple schematic representation of the netCDF structure of EBVCube data that incorporates the optional scenarios (note: more scenarios and/or metrics are possible). In contrast to the [figure above](#figure1) it covers all components of the netCDF including the dimensions, coordinate variables and georeferencing components. There are ATTRIBUTES at various levels and components. These are listed in the tables below in the [Metadata](#metadata) section.
 
-If you have modeled your data for different scenarios, e.g. for the SSP scenarios, the [Global trends in biodiversity (BES-SIM PREDICTS) data set](https://portal.geobon.org/ebv-detail?id=28) by Samantha Hill is a good example to follow. FYI this data set only has one entity: Alltaxa.
+If you have modeled your data for different scenarios, e.g. for the SSP scenarios, the [Global trends in biodiversity (BES-SIM PREDICTS)](https://portal.geobon.org/ebv-detail?id=28) data set by Samantha Hill is a good example to follow. FYI this data set only has one entity: Alltaxa.
 
 ``` shell
 ┌── root level
@@ -76,7 +76,7 @@ If you have modeled your data for different scenarios, e.g. for the SSP scenario
 ### 1.3 Example 2 (minimal)
 The following representation follows the same style as [example 1](#example1) above. The difference is that this is the minimum EBVCube data  set you can create: no scenarios and only one metric. Of course, an EBVCube data set can also contain no scenarios, but several metrics. 
 
-If your data set follows this or a similar structure, the [Habitat availability for African great apes ](https://portal.geobon.org/ebv-detail?id=7) by Jessica Junker is a good example to follow. FYI this data set has seven entities – one per great apes species.
+If your data set follows this or a similar structure, the [Habitat availability for African great apes](https://portal.geobon.org/ebv-detail?id=7) data set by Jessica Junker is a good example to follow. FYI this data set has seven entities – one per great apes species.
 
 ``` bash
 ┌── root level
