@@ -15,11 +15,12 @@ The files are based on the Network Common Data Form ([netCDF](https://www.unidat
 
 ## 1 Hierarchical data structure
 ### 1.1 Description
-The EBVCube netCDF file structure supports multiple data cubes. These cubes have four dimensions: longitude, latitude, time and entity, whereby the last dimension can, e.g., encompass various biological or ecological categories, such as species, species groups, ecosystem types, or other groupings. Each cube holds data of a specific metric. 
+The EBVCube netCDF file structure supports multiple data cubes. These cubes have four dimensions: longitude, latitude, time and entity, whereby the last dimension can, e.g., encompass various biological or ecological categories, such as species, species groups, ecosystem types, or other groupings. Each cube holds data of a specific metric. See [figure below](#figure1).
 
 The use of hierarchical groups allows multiple data cubes to coexist, with common dimensions across all cubes. The first hierarchical level (netCDF group) represents scenarios, such as various Shared Socioeconomic Pathways (SSP) scenarios used in modeling. The second hierarchical level (netCDF group) represents metrics, such as the percentage of protected area per pixel or the proportional loss over a certain time span per pixel. While the scenario-level is optional (no mandatory), each EBVCube netCDF must include at least one metric. If scenarios are included, all metrics must be repeated for each scenario. The number of scenarios and metrics included in the data sets can and will vary. 
 
 The EBV data cubes (netCDF variables named 'ebv_cube') are defined as four dimensional arrays: longitude, latitude, time and biological entity. These dimensions are defined at the root level of the netCDF file, ensuring consistency and accessibility. The longitude and latitude spatial dimensions determinate the geographical extent and resolution of the data, while time dimension is the only unlimited dimension. This design enables the data sets to be updated over time by incorporing new temporal EBV monitoring information. Each of these three dimensions (longitude, latitude, and time) is accompanied by a corresponding coordinate variable at the root level, following the CF convention. The fourth dimension, the biological entity, can encompass a range of biological categories such as individual species, species groups, ecosystem types included in any EBV measurement. This information is stored in a character array named ‘entity’ at the root level and is referred to in CF terminology as an auxiliary coordinate variable. Visualizing a 4D cube can be a challenge. It is a good starting point to keep in mind that this generally means that there are four pieces of information for each pixel in the dataset: the spatial position (latitude and longitude), the date (time) and the entity (e.g. a species).
+
 
 Summary: 
 * Two possible nested sub-groups: scenario and metric
@@ -29,7 +30,9 @@ Summary:
 * Hence several 4D data cubes (one per scenario-metric-path or metric-path) are possible
 * The dimensions of the 4D data cubes are: longitude, latitude, time and entity
 
+<a name='figure1'></a>
 ![vis_4d](https://github.com/user-attachments/assets/760e7d11-3370-429c-8371-532b66dbc5ee)
+
 ### 1.2 Example 1 (extensive)
 * Note: more scenarios and/or metrics possible
 ``` bash
