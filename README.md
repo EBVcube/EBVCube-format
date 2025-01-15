@@ -32,7 +32,7 @@ Summary:
 
 <a name='example1'></a> 
 ### 1.2 Example 1 (extensive)
-This is a simple schematic representation of the netCDF structure of EBVCube data that incorporates the optional scenarios (note: more scenarios and/or metrics are possible). In contrast to the [figure above](#figure1) it covers all components of the netCDF including the dimensions, coordinate variables and georeferencing components. There are ATTRIBUTES at various levels and components. These are listed in the tables below in the [Metadata](#metadata) section.
+This is a schematic, rather technical representation of the netCDF structure of EBVCube data that incorporates the optional scenarios (note: more scenarios and/or metrics are possible). In contrast to the [figure above](#figure1) it covers all components of the netCDF including the dimensions, coordinate variables and georeferencing components. There are ATTRIBUTES at various levels and components. These are listed in the tables below in the [Metadata](#metadata) section.
 
 If you have modeled your data for different scenarios, e.g. for the SSP scenarios, the [Global trends in biodiversity (BES-SIM PREDICTS)](https://portal.geobon.org/ebv-detail?id=28) data set by Samantha Hill is a good example to follow. FYI: this data set only has one entity: Alltaxa.
 
