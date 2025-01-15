@@ -34,7 +34,7 @@ Summary:
 ### 1.2 Example 1 (extensive)
 This is a simple schematic representation of the netCDF structure of EBVCube data that incorporates the optional scenarios (note: more scenarios and/or metrics are possible). In contrast to the [figure above](#figure1) it covers all components of the netCDF including the dimensions, coordinate variables and georeferencing components. There are ATTRIBUTES at various levels and components. These are listed in the tables below in the [Metadata](#metadata) section.
 
-If you have modeled your data for different scenarios, e.g. for the SSP scenarios, the [Global trends in biodiversity (BES-SIM PREDICTS)](https://portal.geobon.org/ebv-detail?id=28) data set by Samantha Hill is a good example to follow. FYI this data set only has one entity: Alltaxa.
+If you have modeled your data for different scenarios, e.g. for the SSP scenarios, the [Global trends in biodiversity (BES-SIM PREDICTS)](https://portal.geobon.org/ebv-detail?id=28) data set by Samantha Hill is a good example to follow. FYI: this data set only has one entity: Alltaxa.
 
 ``` shell
 ┌── root level
@@ -76,7 +76,7 @@ If you have modeled your data for different scenarios, e.g. for the SSP scenario
 ### 1.3 Example 2 (minimal)
 The following representation follows the same style as [example 1](#example1) above. The difference is that this is the minimum EBVCube data  set you can create: no scenarios and only one metric. Of course, an EBVCube data set can also contain no scenarios, but several metrics. 
 
-If your data set follows this or a similar structure, the [Habitat availability for African great apes](https://portal.geobon.org/ebv-detail?id=7) data set by Jessica Junker is a good example to follow. FYI this data set has seven entities – one per great apes species.
+If your data set follows this or a similar structure, the [Habitat availability for African great apes](https://portal.geobon.org/ebv-detail?id=7) data set by Jessica Junker is a good example to follow. FYI: this data set has seven entities – one per great apes species.
 
 ``` bash
 ┌── root level
@@ -100,10 +100,12 @@ If your data set follows this or a similar structure, the [Habitat availability 
 ```
 <a name='metadata'></a> 
 ## 2 Metadata 
-The following tables describe the attributes in the EBV netCDF files. Each table corresponds to a different component in the netCDF. The descriptions of the attributes that are derived from the ACDD, are directly cited from the [ACDD 1.3 documentation](https://wiki.esipfed.org/Attribute_Convention_for_Data_Discovery_1-3). The fifth column (User input) marks all the attributes that need to be defined by the publisher at the upload form at the EBV Data Portal. The sixth column (Mandatory) shows wether this input by the publisher is mandatory.   
+The following tables describe the attributes in the EBV netCDF files. Each table corresponds to a different component in the netCDF. The descriptions of the attributes that are derived from the ACDD, are directly cited from the [ACDD 1.3 documentation](https://wiki.esipfed.org/Attribute_Convention_for_Data_Discovery_1-3). The fifth column (User Input) marks all the attributes that need to be defined by the publisher at the upload form at the [EBV Data Portal](https://portal.geobon.org/). The sixth column (Mandatory) shows wether this input by the publisher is mandatory.   
 Note: These attributes differ in part from those in the metadata files (XML, JSON) in the EBV Data Portal, as they also include the netCDF-specific, often more technical attributes. The [How-To](https://portal.geobon.org/downloads/pdf/how_to_ebv-portal.pdf) of the EBV Data Portal explains the terms of the upload form and maps them to the netCDF attributes described below.
 
-### 2.1 Global Attributes
+### 2.1 Global attributes
+The global [netCDF attributes](https://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-conventions.html#_attributes) are those that can be found at the root (global) level of the netCDF file. The table follows the order of the attributes in the JSON files of the EBV Data Portal. The additional terms are then listed.
+
 |Level |Attribute|Comment|Convention|User Input|Mandatory|
 | --- |  --- | --- | --- |--- | --- |
 |Root |id | An identifier for the data set, provided by and unique within its naming authority. (Currently simple integer, currently preparing transfer to DOI) |ACDD|No|-|
@@ -148,7 +150,9 @@ Note: These attributes differ in part from those in the metadata files (XML, JSO
 |Root|  ebv_cube_dimensions |Fixed value: 'lon, lat, time, entity' |EBV|No|-|
 |Root |   history |Provides an audit trail for modifications to the original data. |ACDD, CF, netCDF Convention|No|-|
 
-### 2.2 Scenario and Metric Attributes
+### 2.2 Scenario and metric attributes
+The scenario and the metric are [netCDF groups](https://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-conventions.html#groups). They are nested. The scenario is the higher level, but unlike the metric, it is not mandatory. The metrics are repeated in all scenarios (if applicable). The following attribtues are found at the metric- and scenario-level. These attributes can also be found in the JSON files.
+
 |Level |Attribute|Comment|Convention|User Input|Mandatory|
 | --- |  --- | --- | --- |--- | --- |
 |Metric	| standard_name	|Short group name|CF|Yes|Yes|
@@ -158,6 +162,8 @@ Note: These attributes differ in part from those in the metadata files (XML, JSO
 |Scenario|	long_name|Extensive group name / description|CF|Yes|No|
 
 ### 2.3 Data cube attributes
+The data cubes (ebv_cube) are [netCDF variables](https://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-conventions.html#variables). There is one data cube per (scenario-) metric-path in the netCDFs. Hence, multiple data cubes can be found in one EBVCube netCDF. Only the *coverage_content_type* attribute is present in the JSON files. The other attributes repeat metric-information and cover technical aspects. For example, the [*grid_mapping*](https://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-conventions.html#coordinate-system) attribute points to the variable in the netCDF that holds the coordiante reference related attributes (see section [Coordinate reference system attributes](#crs)). The *coordinates* attribute is pointing to the [auxiliary coordinate variable](https://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-conventions.html#labels)
+
 |Level |Attribute|Comment|Convention|User Input|Mandatory|
 | --- |  --- | --- | --- |--- | --- |
 | ebv_cube | grid_mapping | Fixed value: '/crs' (Pointer to the coordinate reference system variable.) | CF|No|-|
@@ -168,8 +174,8 @@ Note: These attributes differ in part from those in the metadata files (XML, JSO
 | ebv_cube | _FillValue | internal netCDF attribute | netCDF Convention, CF |No|-|
 | ebv_cube | _ChunkSizes | internal netCDF attribute | netCDF Convention |No|-|
 
-### 2.4 Entity Attributes
-The entity variable is an auxiliary coordinate variable and stores all entity names as a character array.
+### 2.4 Entity attributes
+The entity variable is an [auxiliary coordinate variable](https://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-conventions.html#labels) and stores all entity names as a character array. The *ebv_entity_\** attributes are also included in the JSON files. 
 
 |Level |Attribute|Comment|Convention|User Input|Mandatory|
 | --- |  --- | --- | --- |--- | --- |
@@ -181,8 +187,11 @@ The entity variable is an auxiliary coordinate variable and stores all entity na
 |entity| long_name |Fixed value: 'entity' |CF|No|-|
 
 
-### 2.5 Coordinate reference system Attributes
-EXPLAIN grdi mapping names -> link 
+### 2.5 Coordinate reference system attributes <a name='crs'></a> 
+All attributes regarding the georeferencing can be found at the 'crs' variable in the EBVCube netCDFs. The georeferencing is following the [grip mappings](https://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-conventions.html#grid-mappings-and-projections) by the CF convention. Therefore the attributes differ based on the coordinate reference system. Read the CF convention page for more information. Additionally, the *GeoTransform* and *spatial_ref* attributes are added based on the [netCDF GDAL definitions](https://gdal.org/en/stable/drivers/raster/netcdf.html#georeference). 
+
+FYI: In principle, you can assign all CRSs available in the PROJ library to an EBVCube netCDF. The only restriction is currently the visualization in the map of the EBV Data Portal by the company GeoEngine, which only works for EPSG-based CRSs.  
+
 |Level |Attribute|Comment|Convention|User Input|Mandatory|
 | --- |  --- | --- | --- |--- | --- |
 | crs | grid_mapping_name | String value that contains the mapping’s name, e.g., WGS84 has the value 'latitude_longitude'.  | CF |No|-|
@@ -203,7 +212,7 @@ EXPLAIN grdi mapping names -> link
 | lat | standard_name | 'latitude' or 'projection_x_coordinate' |CF|No|-|
 | lat | long_name | 'lat' |CF|No|-|
 
-### 2.7 Temporal Attributes
+### 2.7 Temporal attributes
 |Level |Attribute|Comment|Convention|User Input|Mandatory|
 | --- |  --- | --- | --- |--- | --- |
 | time | axis | Fixed value:  'T' | CF |No|-|
