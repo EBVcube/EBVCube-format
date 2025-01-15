@@ -9,18 +9,15 @@ Jose Valdez  <a href="https://orcid.org/0000-0003-2690-9952" target="_top"><img 
 Nestor Fernandez  <a href="https://orcid.org/0000-0002-9645-8571" target="_top"><img alt="ORCID iD" src="https://cran.r-project.org/web/orcid.svg" style="width:16px; height:16px; margin-left:4px; margin-right:4px; vertical-align:middle"></a> and 
 Henrique M. Pereira  <a href="https://orcid.org/0000-0003-1043-1675" target="_top"><img alt="ORCID iD" src="https://cran.r-project.org/web/orcid.svg" style="width:16px; height:16px; margin-left:4px; margin-right:4px; vertical-align:middle"></a>.
 
-
-
 The files are based on the Network Common Data Form ([netCDF](https://www.unidata.ucar.edu/software/netcdf/documentation/4.7.4-pre/attribute_conventions.html)). Additionally, it follows the Climate and Forecast Conventions ([CF, version 1.8](https://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-conventions.html)) and the Attribute Convention for Data Discovery ([ACDD, version 1.3](https://wiki.esipfed.org/Attribute_Convention_for_Data_Discovery_1-3)). This data format complements the Essential Biodiversity Variables framework ([EBV](https://geobon.org/ebvs/what-are-ebvs/)).
 
 ## 1 Hierarchical data structure
 ### 1.1 Description
-The EBVCube netCDF file structure supports multiple data cubes. These cubes have four dimensions: longitude, latitude, time and entity, whereby the last dimension can, e.g., encompass various biological or ecological categories, such as species, species groups, ecosystem types, or other groupings. Each cube holds data of a specific metric. See [figure below](#figure1).
+The EBVCube netCDF file structure supports multiple data cubes. These cubes have four dimensions: longitude, latitude, time and entity, whereby the last dimension can, e.g., encompass various biological or ecological categories, such as species, species groups, ecosystem types, or other groupings. Each cube holds data of a specific metric. See [figure](#figure1) below.
 
 The use of hierarchical groups allows multiple data cubes to coexist, with common dimensions across all cubes. The first hierarchical level (netCDF group) represents scenarios, such as various Shared Socioeconomic Pathways (SSP) scenarios used in modeling. The second hierarchical level (netCDF group) represents metrics, such as the percentage of protected area per pixel or the proportional loss over a certain time span per pixel. While the scenario-level is optional (no mandatory), each EBVCube netCDF must include at least one metric. If scenarios are included, all metrics must be repeated for each scenario. The number of scenarios and metrics included in the data sets can and will vary. 
 
 The EBV data cubes (netCDF variables named 'ebv_cube') are defined as four dimensional arrays: longitude, latitude, time and biological entity. These dimensions are defined at the root level of the netCDF file, ensuring consistency and accessibility. The longitude and latitude spatial dimensions determinate the geographical extent and resolution of the data, while time dimension is the only unlimited dimension. This design enables the data sets to be updated over time by incorporing new temporal EBV monitoring information. Each of these three dimensions (longitude, latitude, and time) is accompanied by a corresponding coordinate variable at the root level, following the CF convention. The fourth dimension, the biological entity, can encompass a range of biological categories such as individual species, species groups, ecosystem types included in any EBV measurement. This information is stored in a character array named ‘entity’ at the root level and is referred to in CF terminology as an auxiliary coordinate variable. Visualizing a 4D cube can be a challenge. It is a good starting point to keep in mind that this generally means that there are four pieces of information for each pixel in the dataset: the spatial position (latitude and longitude), the date (time) and the entity (e.g. a species).
-
 
 Summary: 
 * Two possible nested sub-groups: scenario and metric
@@ -31,15 +28,18 @@ Summary:
 * The dimensions of the 4D data cubes are: longitude, latitude, time and entity
 <a name='figure1'></a> 
 
-
 ![vis_4d](https://github.com/user-attachments/assets/760e7d11-3370-429c-8371-532b66dbc5ee) 
 
+<a name='example1'></a> 
 ### 1.2 Example 1 (extensive)
-* Note: more scenarios and/or metrics possible
-``` bash
+This is a simple schematic representation of the netCDF structure of EBVCube data that incorporates the optional scenarios (note: more scenarios and/or metrics are possible). In contrast to the [figure above](#figure1) it covers all components of the netCDF including the dimensions, coordinate variables and georeferencing components. There are ATTRIBUTES at various levels and components. These are listed in the tables below in the [Metadata](#metadata) section.
+
+If you have modeled your data for different scenarios, e.g. for the SSP scenarios, the [Global trends in biodiversity (BES-SIM PREDICTS) data set](https://portal.geobon.org/ebv-detail?id=28) by Samantha Hill is a good example to follow. FYI this data set only has one entity: Alltaxa.
+
+``` shell
 ┌── root level
 ├── GLOBAL ATTRIBUTES
-├── DIMENSIONS: entity, time, lat, lon
+├── Dimensions: entity, time, lat, lon
 ├── crs [0]
 |   └── ATTRIBUTES
 ├── lat [lat]
@@ -74,6 +74,10 @@ Summary:
 ```
 
 ### 1.3 Example 2 (minimal)
+The following representation follows the same style as [example 1](#example1) above. The difference is that this is the minimum EBVCube data  set you can create: no scenarios and only one metric. Of course, an EBVCube data set can also contain no scenarios, but several metrics. 
+
+If your data set follows this or a similar structure, the [Habitat availability for African great apes ](https://portal.geobon.org/ebv-detail?id=7) by Jessica Junker is a good example to follow. FYI this data set has seven entities – one per great apes species.
+
 ``` bash
 ┌── root level
 ├── GLOBAL ATTRIBUTES
@@ -94,7 +98,8 @@ Summary:
         └── ATTRIBUTES
 
 ```
-## 2 Metadata
+<a name='metadata'></a> 
+## 2 Metadata 
 The following tables describe the attributes in the EBV netCDF files. Each table corresponds to a different component in the netCDF. The descriptions of the attributes that are derived from the ACDD, are directly cited from the [ACDD 1.3 documentation](https://wiki.esipfed.org/Attribute_Convention_for_Data_Discovery_1-3). The fifth column (User input) marks all the attributes that need to be defined by the publisher at the upload form at the EBV Data Portal. The sixth column (Mandatory) shows wether this input by the publisher is mandatory.   
 Note: These attributes differ in part from those in the metadata files (XML, JSON) in the EBV Data Portal, as they also include the netCDF-specific, often more technical attributes. The [How-To](https://portal.geobon.org/downloads/pdf/how_to_ebv-portal.pdf) of the EBV Data Portal explains the terms of the upload form and maps them to the netCDF attributes described below.
 
