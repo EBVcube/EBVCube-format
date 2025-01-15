@@ -28,9 +28,8 @@ Summary:
 * The scenario group is always higher than the metric
 * If several metrics are present, they need to be repeated for all scenarios
 * Hence several 4D data cubes (one per scenario-metric-path or metric-path) are possible
-* The dimensions of the 4D data cubes are: longitude, latitude, time and entity
+* The dimensions of the 4D data cubes are: longitude, latitude, time and entity <a name='figure1'></a>
 
-<a name='figure1'></a>
 ![vis_4d](https://github.com/user-attachments/assets/760e7d11-3370-429c-8371-532b66dbc5ee)
 
 ### 1.2 Example 1 (extensive)
