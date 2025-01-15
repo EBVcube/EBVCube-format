@@ -97,46 +97,46 @@ The following tables describe the attributes of the EBV netCDF files. Each table
 |Level |Attribute|Comment|Convention|User Input|Mandatory|
 | --- |  --- | --- | --- |--- | --- |
 |Root |id | An identifier for the data set, provided by and unique within its naming authority. (Currently simple integer, currently preparing transfer to DOI) |ACDD|No|-|
-|Root |  naming_authority| The organization that provides the initial id for the dataset. Fixed value: 'The German Centre for Integrative Biodiversity Research (iDiv) Halle-Jena-Leipzig' |ACDD|No|-|
-|Root | Conventions| A comma-separated list of the conventions that are followed by the dataset. Fixed value: 'CF-1.8, ACDD-1.3, EBV-1.0' |ACDD, CF|No|-|
+|Root |naming_authority| The organization that provides the initial id for the dataset. Fixed value: 'The German Centre for Integrative Biodiversity Research (iDiv) Halle-Jena-Leipzig' |ACDD|No|-|
 |Root| title|A short phrase or sentence describing the dataset.|ACDD, CF |Yes|Yes|
+|Root |  date_created |The date on which this version of the data was created.| ACDD |Yes|Yes|
+|Root |  date_issued |The date on which this data (including all modifications) was formally issued (i.e., made available to a wider audience) at the EBV Data Portal. |ACDD|No|-|
 |Root| summary|A paragraph describing the dataset, analogous to an abstract for a paper.|ACDD|Yes|Yes|
 |Root |  references|Published or web-based references that describe the data or methods used to produce it.|ACDD, CF |Yes|No|
 |Root |  source | The method of production of the original data. If it was model-generated, source should name the model and its version. If it is observational, source should characterize it. |ACDD, CF|Yes|Yes|
 |Root |  project_name | The name of the project(s) principally responsible for originating this data. Multiple projects can be separated by commas.|EBV|Yes|No|
 |Root |  project_url | The URL(s) of the project(s).|EBV|Yes|No|
-|Root |  date_created |The date on which this version of the data was created.| ACDD |Yes|Yes|
-|Root |  date_issued |The date on which this data (including all modifications) was formally issued (i.e., made available to a wider audience) at the EBV Data Portal. |ACDD|No|-|
 |Root |  creator_name|The name of the person principally responsible for creating this data.| ACDD|Yes|Yes|
 |Root |   creator_email |The email address of the person principally responsible for creating this data.|ACDD |Yes|No|
 |Root |   creator_institution |The institution of the creator; should uniquely identify the creator's institution. |ACDD |Yes|Yes|
 |Root |   contributor_name |The name of any individuals, projects, or institutions that contributed to the creation of this data.|ACDD|Yes|No|
+|Root |   license |Provide the URL to a standard or specific license, enter "Freely Distributed" or "None", or describe any restrictions to data access and distribution in free text. |ACDD|Yes|Yes|
 |Root |   publisher_name | The name of the person responsible for publishing the data file or product to users, with its current metadata and format. |ACDD|Yes|Yes|
 |Root |   publisher_email |The email address of the person responsible for publishing the data file or product to users, with its current metadata and format. |ACDD|Yes|Yes|
 |Root |   publisher_institution| The institution that presented the data file or equivalent product to users; should uniquely identify the institution.| ACDD|Yes|Yes|
-|Root |   license |Provide the URL to a standard or specific license, enter "Freely Distributed" or "None", or describe any restrictions to data access and distribution in free text. |ACDD|Yes|Yes|
-|Root |   history |Provides an audit trail for modifications to the original data. |ACDD, CF, netCDF Convention|No|-|
-|Root |   comment | Miscellaneous information about the data, not captured elsewhere.|CF, ACDD|Yes|No|
-|Root| keywords |A comma-separated list of key words and/or phrases.|ACDD|Yes|No|
 |Root|	ebv_class|EBV Class of the dataset. |EBV|Yes|Yes|
 |Root|	ebv_name|EBV Name of the dataset. |EBV|Yes|Yes|
-|Root|  ebv_vocabulary | URL to controlled vocabulary for ebv_class and ebv_name. Fiexed value: 'https://portal.geobon.org/api/v1/ebv' |EBV|No|-|
-|Root|  ebv_domain |Environmental domain of the dataset, one or several of ‘Terrestrial’, ‘Marine’ or ‘Freshwater’.|EBV|Yes|Yes|
-|Root|  ebv_cube_dimensions |Fixed value: 'lon, lat, time, entity' |EBV|No|-|
 |Root|  ebv_scenario_classification_name |Name of the applied scenario classification (if a scenario is used – not mandatory).|EBV|Yes|No|
 |Root|  ebv_scenario_classification_version |Version of the scenario classification (if a scenario is used – not mandatory).|EBV|Yes|No|
 |Root|  ebv_scenario_classification_url |URL of the scenario classification (if a scenario is used – not mandatory).|EBV|Yes|No|
 |Root|  ebv_spatial_scope |Spatial scope of the dataset, either ‘Continental/ Regional’, ‘National’, ‘Sub-national/Local’ or ‘Global’.|EBV|Yes|Yes|
 |Root|  ebv_spatial_description |Specific information about the spatial scope.|EBV|Yes|Yes|
-|Root| geospatial_bounds_crs|The coordinate reference system (CRS) of the point coordinates in the geospatial_bounds attribute. EPSG CRSs are strongly recommended. Example: 'EPSG:4326'|ACDD|No|-|
-| Root | geospatial_bounds | Describes the data's 2D or 3D geospatial extent in OGC's Well-Known Text (WKT) Geometry format (reference the OGC Simple Feature Access (SFA) specification). Example: 'POLYGON ((40.26 -111.29, 41.26 -111.29, 41.26 -110.29, 40.26 -110.29, 40.26 -111.29))'|ACDD|No|-|
 | Root | geospatial_lat_resolution  | Information about the targeted spacing of points in latitude. Describes the resolution as a numeric value and its units. |ACDD|No|-|
 | Root | geospatial_lon_resolution | Information about the targeted spacing of points in longitude. Describes the resolution as a numeric value and its units. |ACDD|No|-|
 | Root | geospatial_lat_units | Units for the longitude axis. These are presumed to be ‘degrees_north’ or ‘meters_north’. |ACDD|No|-|
 | Root | geospatial_lon_units | Units for the longitude axis. These are presumed to be ‘degrees_east’ or ‘meters_east’. |ACDD|No|-|
+|Root| geospatial_bounds_crs|The coordinate reference system (CRS) of the point coordinates in the geospatial_bounds attribute. EPSG CRSs are strongly recommended. Example: 'EPSG:4326'|ACDD|No|-|
+| Root | geospatial_bounds | Describes the data's 2D or 3D geospatial extent in OGC's Well-Known Text (WKT) Geometry format (reference the OGC Simple Feature Access (SFA) specification). Example: 'POLYGON ((40.26 -111.29, 41.26 -111.29, 41.26 -110.29, 40.26 -110.29, 40.26 -111.29))'|ACDD|No|-|
+| Root | time_coverage_resolution | Describes the targeted time period between each value in the data set (ISO 8601:2004 date format). |ACDD|Yes|Yes|
 | Root | time_coverage_start | Describes the time of the first data point in the data set (ISO 8601:2004 date format). |ACDD|Yes|Yes|
 | Root | time_coverage_end | Describes the time of the last data point in the data set (ISO 8601:2004 date format). |ACDD|Yes|Yes|
-| Root | time_coverage_resolution | Describes the targeted time period between each value in the data set (ISO 8601:2004 date format). |ACDD|Yes|Yes|
+|Root|  ebv_domain |Environmental domain of the dataset, one or several of ‘Terrestrial’, ‘Marine’ or ‘Freshwater’.|EBV|Yes|Yes|
+|Root |   comment | Miscellaneous information about the data, not captured elsewhere.|CF, ACDD|Yes|No|
+|Root | Conventions| A comma-separated list of the conventions that are followed by the dataset. Fixed value: 'CF-1.8, ACDD-1.3, EBV-1.0' |ACDD, CF|No|-|
+|Root| keywords |A comma-separated list of key words and/or phrases.|ACDD|Yes|No|
+|Root|  ebv_vocabulary | URL to controlled vocabulary for ebv_class and ebv_name. Fiexed value: 'https://portal.geobon.org/api/v1/ebv' |EBV|No|-|
+|Root|  ebv_cube_dimensions |Fixed value: 'lon, lat, time, entity' |EBV|No|-|
+|Root |   history |Provides an audit trail for modifications to the original data. |ACDD, CF, netCDF Convention|No|-|
 
 ### 2.2 Scenario and Metric Attributes
 |Level |Attribute|Comment|Convention|User Input|Mandatory|
