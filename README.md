@@ -226,14 +226,97 @@ FYI: In principle, you can assign all CRSs available in the PROJ library to an E
 | crs | GeoTransform |  GeoTransform array: 'x_ul x_res x_rotation y_ul y_rotation y_res' |GDAL|No|-|
 | crs | long_name | Fixed value: 'CRS definition'|CF| No|-|
 
-## 3. Tools 
-### 3.1 Exploring EBVCubes
+## 3. Taxonomy
+
+### 3.1 Introducation 
+If the entities in your dataset follow a taxonomy, you can also add this information to an EBVCube dataset. The taxonomy can cover species as well as habitat types and more. 
+
+For example the [Occurrence Metrics for Invasive Alien Species of Union Concern in EU27: A 10 km prototype using GBIF occurrence cubes ](https://portal.geobon.org/ebv-detail?id=83) dataset hold species data following the GBIF taxonomic backbone. The taxonomic information is directly added during the creation of the netCDF file. You can follow the code [here](https://doi.org/10.5281/zenodo.13798783).  
+
+The ebvcube R package retrieves the taxonomic information for you (see below). Further development is currently ongoing. This encompasses for example the display of the taxonomy in the [EBVCubeVisualizer](https://github.com/EBVcube/EBVCubeVisualizer) and the finalization of a Shiny App, as well as the display in the EBV Data Portal website and more.
+
+### 3.2 Technical representation
+To store the taxonomic information two netCDF variables (character arrays) are added to the netCDF. The 'entity_levels' and the 'entity_list'. 
+
+The 'entity_levels' is a 2D cube (dimensions: nchar_taxonlist, taxonlevel) that hold the names of the different taxonomy levels, e.g. 'species', 'genus', 'family', 'order', 'class', 'phylum' and 'kingdom'.
+The 'entity_list' is a 3D cube (dimensions: nchar, entity, taxonlevel) that hold the values of all taxonomy levels per entity, e.g. for one entity 'Accipiter brevipes', 'Accipiter', 'Accipitridae', 'Accipitriformes', 'Aves', 'Chordata' and 'Animalia'.
+
+FYI: both variables will soon be renamed to 'taxonomy_list' and 'taxonomy_levels'.
+
+## 3.3 Read taxonomy with R and Python
+To get the taxonomic information with R run the following code:
+``` r
+
+#import packages
+library(ebvcube)
+
+#download the EBVCube file
+dir <- tempdir()
+filepath <- ebv_download(id = 83,
+                         outputdir = dir)
+
+#read properties
+prop <- ebv_properties(filepath, verbose=F)
+
+#get the taxonomy
+taxonomy <- prop@general$taxonomy
+  
+#print the first line
+print(taxonomy[1,])
+#         species  genus   family   order         class       phylum kingdom
+#1 Acacia saligna Acacia Fabaceae Fabales Magnoliopsida Tracheophyta Plantae
+
+```
+
+To get the taxonomic information with Python run the following code:
+```python
+
+#import packages
+import netCDF4 as nc
+import numpy as np
+import tempfile
+import wget
+
+#download the EBVCube file
+url = 'https://portal.geobon.org/data/upload/82/public/suarez_spepop_id82_20240820_v1.nc'
+temp_dir = tempfile.TemporaryDirectory()
+filepath = wget.download(url, out = temp_dir.name)
+
+#open netCDF file read-only
+rootgrp = nc.Dataset(filepath,"r")
+
+#get the taxonomy levels
+tax_level = np.transpose(np.array(rootgrp['entity_levels']))
+tax_level_list = [tax_level[i,:].tobytes().decode('UTF-8').strip() for i in range(tax_level.shape[0])]
+#print the taxon levels
+print(tax_level_list)
+# Out: ['species', 'genus', 'family', 'order', 'class', 'phylum', 'kingdom']
+
+#get the taxonomy list data and transform it into a dictionary
+tax_list = np.transpose(np.array(rootgrp['entity_list']))
+#collect taxonomy of this dataset
+result_tax = dict()
+result_tax['entity_id'] = tax_level_list
+for entity in range(tax_list.shape[1]):
+    row = [tax_list[:,entity,:][i,:].tobytes().decode('UTF-8').strip() for i in range(tax_list[:,entity,:].shape[0])]
+    result_tax[(entity+1)] = row
+#print the first row
+print(result_tax[1])
+# Out: ['Acacia saligna', 'Acacia', 'Fabaceae', 'Fabales', 'Magnoliopsida', 'Tracheophyta', 'Plantae']
+
+#close netCDF file
+rootgrp.close()
+
+```
+
+## 4. Tools 
+### 4.1 Exploring EBVCubes
 To discover the EBV netCDFs in full detail, we recommend [Panoply](https://www.giss.nasa.gov/tools/panoply/). This is a software developed by NASA to generally open HDF5/netCDF files. This tool allows you to see all components of the netCDF including the internal hierarchy and all attribues. Besides, it has a plot function. This can be a bit overwhelming as you also see all the distributed technical components and attributes. But it is a very nice way to deeply understand the EBV netCDFs without code. 
 
 You can also download and open the EBVCube netCDFs directly in your R code with the [ebvcube R package](https://github.com/EBVcube/ebvcube). This package bundles all the important metadata for you and hides all ‘unnecessary’ technical stuff. Also, you can directly start working with the data. It provides some easy high-level functions to, e.g., directly visualize or subset the data as you like.
 
 In addition, we have developed a QGIS plugin called [EBVCubeVisualizer](https://github.com/EBVcube/EBVCubeVisualizer). This plugin allows the user to explore the full metadata and hierarchical structure of EBVCube datasets, similar to the Panoply software - but directly in QGIS. It strikes a good balance between displaying the full structure and metadata while hiding technical components and attributes (in contrast to Panoply) for improved user-friendliness. It allows users to extract and visualize specific slices from EBV data cubes, with flexible selection by time, entity, scenario and metric. As with all other layers in QGIS, you can use all geospatial tools directly. 
 
-### 3.2 Creating EBVCubes
+### 4.2 Creating EBVCubes
 The creation of the EBVCube netCDF is supported via the ebvcube R package. You can find the most recent development version [here](https://github.com/EBVcube/ebvcube/tree/dev) on GitHub. The package is also published on [CRAN](https://cran.r-project.org/web/packages/ebvcube/). The [Readme]([https://github.com/EBVcube/ebvcube/blob/dev/README.md](https://github.com/EBVcube/ebvcube/blob/main/README.md#34-take-a-peek-on-the-creation-of-an-ebv-netcdf)) of the GitHub repository explains shortly the workflow for the creation. The [How-To](https://portal.geobon.org/downloads/pdf/how_to_ebv-portal.pdf) on the EBV Data Portal has a section ('8. Training resources') summarizing different ressources including code examples for the creation of EBVCube netCDFs.
 
