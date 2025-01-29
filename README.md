@@ -243,7 +243,7 @@ The 'entity_list' is a 3D cube (dimensions: nchar, entity, taxonlevel) that hold
 
 FYI: both variables will soon be renamed to 'taxonomy_list' and 'taxonomy_levels'.
 
-## 3.3 Read taxonomy with R and Python
+### 3.3 Read taxonomy with R and Python
 To get the taxonomic information with R run the following code:
 ``` r
 
