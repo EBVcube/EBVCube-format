@@ -238,8 +238,8 @@ The ebvcube R package retrieves the taxonomic information for you (see below). F
 ### 3.2 Technical representation
 To store the taxonomic information two netCDF variables (character arrays) are added to the netCDF. The 'entity_levels' and the 'entity_list'. 
 
-The 'entity_levels' is a 2D cube (dimensions: nchar_taxonlist, taxonlevel) that hold the names of the different taxonomy levels, e.g. 'species', 'genus', 'family', 'order', 'class', 'phylum' and 'kingdom'.
-The 'entity_list' is a 3D cube (dimensions: nchar, entity, taxonlevel) that hold the values of all taxonomy levels per entity, e.g. for one entity 'Accipiter brevipes', 'Accipiter', 'Accipitridae', 'Accipitriformes', 'Aves', 'Chordata' and 'Animalia'.
+The 'entity_levels' is a 2D array (dimensions: nchar_taxonlist, taxonlevel) that hold the names of the different taxonomy levels, e.g. 'species', 'genus', 'family', 'order', 'class', 'phylum' and 'kingdom'.
+The 'entity_list' is a 3D array (dimensions: nchar, entity, taxonlevel) that hold the values of all taxonomy levels per entity, e.g. for one entity 'Accipiter brevipes', 'Accipiter', 'Accipitridae', 'Accipitriformes', 'Aves', 'Chordata' and 'Animalia'.
 
 FYI: both variables will soon be renamed to 'taxonomy_list' and 'taxonomy_levels'.
 
