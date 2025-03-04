@@ -115,6 +115,9 @@ The global [netCDF attributes](https://cfconventions.org/Data/cf-conventions/cf-
 |Root| title|A short phrase or sentence describing the dataset.|ACDD, CF |Yes|Yes|
 |Root |  date_created |The date on which this version of the data was created.| ACDD |Yes|Yes|
 |Root |  date_issued |The date on which this data (including all modifications) was formally issued (i.e., made available to a wider audience) at the EBV Data Portal. |ACDD|No|-|
+|Root |  date_modified |The date on which the data was last modified. Note that this applies just to the data, not the metadata. The ISO 8601:2004 extended date format is recommended. |ACDD|No|-|
+|Root |  date_metadata_modified |The date on which the metadata was last modified. The ISO 8601:2004 extended date format is recommended. |ACDD|No|-|
+|Root |  product_version |Version identifier (integer value) of the data file or product as assigned by the data creator. For example, a new algorithm or methodology could result in a new product_version. |ACDD|No|-|
 |Root| summary|A paragraph describing the dataset, analogous to an abstract for a paper.|ACDD|Yes|Yes|
 |Root |  references|Published or web-based references that describe the data or methods used to produce it.|ACDD, CF |Yes|No|
 |Root |  source | The method of production of the original data. If it was model-generated, source should name the model and its version. If it is observational, source should characterize it. |ACDD, CF|Yes|Yes|
