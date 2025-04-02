@@ -236,15 +236,15 @@ If the entities in your dataset follow a taxonomy, you can also add this informa
 
 For example the [Occurrence Metrics for Invasive Alien Species of Union Concern in EU27: A 10 km prototype using GBIF occurrence cubes ](https://portal.geobon.org/ebv-detail?id=83) dataset hold species data following the GBIF taxonomic backbone. The taxonomic information is directly added during the creation of the netCDF file. You can follow the code [here](https://doi.org/10.5281/zenodo.13798783).  
 
-The ebvcube R package retrieves the taxonomic information for you (see below). Further development is currently ongoing. This encompasses for example the display of the taxonomy in the [EBVCubeVisualizer](https://github.com/EBVcube/EBVCubeVisualizer) and the finalization of a Shiny App, as well as the display in the EBV Data Portal website and more.
+The ebvcube R package retrieves the taxonomic information for you (see below), and it is also displayed per dataset on the EBV Data Portal detail pages. Further developments are currently underway. This encompasses for example the display of the taxonomy in the [EBVCubeVisualizer](https://github.com/EBVcube/EBVCubeVisualizer) and the integration into the EBV Data Portal API.
 
 ### 3.2 Technical representation
-To store the taxonomic information two netCDF variables (character arrays) are added to the netCDF. The 'entity_levels' and the 'entity_list'. 
+To store the taxonomic information two netCDF variables (character arrays) are added to the netCDF. The 'taxonomy_levels' and the 'taxonomy_table'. 
 
-The 'entity_levels' is a 2D array (dimensions: nchar_taxonlist, taxonlevel) that hold the names of the different taxonomy levels, e.g. 'species', 'genus', 'family', 'order', 'class', 'phylum' and 'kingdom'.
-The 'entity_list' is a 3D array (dimensions: nchar, entity, taxonlevel) that hold the values of all taxonomy levels per entity, e.g. for one entity 'Accipiter brevipes', 'Accipiter', 'Accipitridae', 'Accipitriformes', 'Aves', 'Chordata' and 'Animalia'.
+The 'taxonomy_levels' is a 2D array (dimensions: nchar_taxonlist, taxonlevel) that hold the names of the different taxonomy levels, e.g. 'species', 'genus', 'family', 'order', 'class', 'phylum' and 'kingdom'.
+The 'taxonomy_table' is a 3D array (dimensions: nchar, entity, taxonlevel) that hold the values of all taxonomy levels per entity, e.g. for one entity 'Accipiter brevipes', 'Accipiter', 'Accipitridae', 'Accipitriformes', 'Aves', 'Chordata' and 'Animalia'.
 
-FYI: both variables will soon be renamed to 'taxonomy_list' and 'taxonomy_levels'.
+FYI: these variables were called 'entity_levels' and 'entity_list' until R package version 0.4.0. The renaming was done in the beginning of April in 2025. The R package is able to handle both namings. 
 
 ### 3.3 Read taxonomy with R and Python
 To get the taxonomic information with R run the following code:
@@ -289,14 +289,14 @@ filepath = wget.download(url, out = temp_dir.name)
 rootgrp = nc.Dataset(filepath,"r")
 
 #get the taxonomy levels
-tax_level = np.transpose(np.array(rootgrp['entity_levels']))
+tax_level = np.transpose(np.array(rootgrp['entity_levels'])) #new naming: taxonomy_levels
 tax_level_list = [tax_level[i,:].tobytes().decode('UTF-8').strip() for i in range(tax_level.shape[0])]
 #print the taxon levels
 print(tax_level_list)
 # Out: ['species', 'genus', 'family', 'order', 'class', 'phylum', 'kingdom']
 
 #get the taxonomy list data and transform it into a dictionary
-tax_list = np.transpose(np.array(rootgrp['entity_list']))
+tax_list = np.transpose(np.array(rootgrp['entity_list'])) #new naming: taxonomy_table
 #collect taxonomy of this dataset
 result_tax = dict()
 result_tax['entity_id'] = tax_level_list
