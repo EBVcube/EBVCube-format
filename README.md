@@ -254,6 +254,7 @@ FYI: In principle, you can assign all CRSs available in the PROJ library to an E
 
 ### 2.8 Taxonomy attributes
 If the dataset encompasses taxonomic information at least two new variables are added. The taxonomy_key variable is only added if the user also provides the taxonomic keys. 
+If an EBVCube netCDF holds taxonomic information, the ebv_entity_classification_name and ebv_entity_classification_url, associated to the entity variable, point to the taxonomic backbone and its URL. 
 
 |Level |Attribute|Comment|Convention|User Input|Mandatory|
 | --- |  --- | --- | --- |--- | --- |
@@ -262,9 +263,6 @@ If the dataset encompasses taxonomic information at least two new variables are 
 |taxonomy_key| units |Fixed value: '1' for 'unity' (udunits)|CF|No|-|
 |taxonomy_key| long_name |The name of the taxonomic key from the authority of the taxonomic backbone. For example, if your taxonomy is based on the [GBIF Backbone Taxonomy](https://www.gbif.org/dataset/d7dddbf4-2cf0-4f39-9b2a-bb099caae36c) the value could be "usageKey".|EBV|Yes|Yes|
 
-
-ebv_entity_classification_name
-ebv_entity_classification_url 
 |Level |Attribute|Comment|Convention|User Input|Mandatory|
 | --- |  --- | --- | --- |--- | --- |
 | crs | grid_mapping_name | String value that contains the mapping’s name, e.g., WGS84 has the value 'latitude_longitude'.  | CF |No|-|
