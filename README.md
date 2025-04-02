@@ -41,7 +41,7 @@ If you have modeled your data for different scenarios, e.g. for the SSP scenario
 ``` shell
 ┌── root level
 ├── GLOBAL ATTRIBUTES
-├── Dimensions: entity, time, lat, lon
+├── Dimensions: entity, time, lat, lon, nchar
 ├── crs [0]
 |   └── ATTRIBUTES
 ├── lat [lat]
@@ -50,7 +50,7 @@ If you have modeled your data for different scenarios, e.g. for the SSP scenario
 |   └── ATTRIBUTES
 ├── time [time]
 |   └── ATTRIBUTES
-├── entity [entity]
+├── entity [entity, nchar]
 |   └── ATTRIBUTES
 ├── scenario_1
 |   ├── ATTRIBUTES
@@ -83,7 +83,7 @@ If your data set follows this or a similar structure, the [Habitat availability 
 ``` bash
 ┌── root level
 ├── GLOBAL ATTRIBUTES
-├── DIMENSIONS: entity, time, lat, lon
+├── DIMENSIONS: entity, time, lat, lon, nchar
 ├── crs [0]
 |   └── ATTRIBUTES
 ├── lat [lat]
@@ -92,7 +92,7 @@ If your data set follows this or a similar structure, the [Habitat availability 
 |   └── ATTRIBUTES
 ├── time [time]
 |   └── ATTRIBUTES
-├── entity [entity]
+├── entity [entity, nchar]
 |   └── ATTRIBUTES
 └── metric_1 
     ├── ATTRIBUTES
@@ -100,6 +100,37 @@ If your data set follows this or a similar structure, the [Habitat availability 
         └── ATTRIBUTES
 
 ```
+
+### 1.4 Example 3 (taxonomy) <a name='example3'></a> 
+In contrast to the first two examples, this one includes the variables that are added to the netCDF when taxonomic information is given. For a detailed description see the [taxonomy section](#taxonomy). 
+
+``` shell
+┌── root level
+├── GLOBAL ATTRIBUTES
+├── Dimensions: entity, time, lat, lon, nchar, taxonlevel, nchar_taxonlist, nchar_taxonid
+├── crs [0]
+|   └── ATTRIBUTES
+├── lat [lat]
+|   └── ATTRIBUTES
+├── lon [lon]
+|   └── ATTRIBUTES
+├── time [time]
+|   └── ATTRIBUTES
+├── entity [entity, nchar]
+|   └── ATTRIBUTES
+├── taxonomy_levels [nchar_taxonlist, taxonlevel]
+|   └── ATTRIBUTES
+├── taxonomy_table [nchar, entity, taxonlevel]
+|   └── ATTRIBUTES
+├── taxonomy_key [nchar_taxonid, entity]
+|   └── ATTRIBUTES
+└── metric_1 
+    ├── ATTRIBUTES
+    └── ebv_cube [entity, time, lat, lon] 
+        └── ATTRIBUTES
+
+```
+
 <a name='metadata'></a> 
 ## 2 Metadata 
 The following tables describe the attributes in the EBV netCDF files. Each table corresponds to a different component in the netCDF. The descriptions of the attributes that are derived from the ACDD, are directly cited from the [ACDD 1.3 documentation](https://wiki.esipfed.org/Attribute_Convention_for_Data_Discovery_1-3). The fifth column (User Input) marks all the attributes that need to be defined by the publisher at the upload form at the [EBV Data Portal](https://portal.geobon.org/). The sixth column (Mandatory) shows wether this input by the publisher is mandatory.   
@@ -229,6 +260,7 @@ FYI: In principle, you can assign all CRSs available in the PROJ library to an E
 | crs | GeoTransform |  GeoTransform array: 'x_ul x_res x_rotation y_ul y_rotation y_res' |GDAL|No|-|
 | crs | long_name | Fixed value: 'CRS definition'|CF| No|-|
 
+<a name='taxonomy'></a> 
 ## 3. Taxonomy
 
 ### 3.1 Introducation 
@@ -243,6 +275,7 @@ To store the taxonomic information two netCDF variables (character arrays) are a
 
 The 'taxonomy_levels' is a 2D array (dimensions: nchar_taxonlist, taxonlevel) that hold the names of the different taxonomy levels, e.g. 'species', 'genus', 'family', 'order', 'class', 'phylum' and 'kingdom'.
 The 'taxonomy_table' is a 3D array (dimensions: nchar, entity, taxonlevel) that hold the values of all taxonomy levels per entity, e.g. for one entity 'Accipiter brevipes', 'Accipiter', 'Accipitridae', 'Accipitriformes', 'Aves', 'Chordata' and 'Animalia'.
+A schematic representation can be found in [example 3](#example3).
 
 FYI: these variables were called 'entity_levels' and 'entity_list' until R package version 0.4.0. The renaming was done in the beginning of April in 2025. The R package is able to handle both namings. 
 
