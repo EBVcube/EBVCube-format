@@ -252,6 +252,14 @@ All attributes regarding the georeferencing can be found at the 'crs' variable i
 
 FYI: In principle, you can assign all CRSs available in the PROJ library to an EBVCube netCDF. The only restriction is currently the visualization in the map of the EBV Data Portal by the company GeoEngine, which only works for EPSG-based CRSs.  
 
+|Level |Attribute|Comment|Convention|User Input|Mandatory|
+| --- |  --- | --- | --- |--- | --- |
+| crs | grid_mapping_name | String value that contains the mapping’s name, e.g., WGS84 has the value 'latitude_longitude'.  | CF |No|-|
+| crs | * | Attributes that define a specific mapping depend on the value of ‘grid_mapping_name’ (FGDC "Content Standard for Digital Geospatial Metadata"), e.g., for WGS84: ‘longitude_of_prime_meridian’, ‘semi_major_axis’ and ‘inverse_flattening’.| CF|No|-|
+| crs | spatial_ref |  WKT2 representation of CRS |GDAL|No|-|
+| crs | GeoTransform |  GeoTransform array: 'x_ul x_res x_rotation y_ul y_rotation y_res' |GDAL|No|-|
+| crs | long_name | Fixed value: 'CRS definition'|CF| No|-|
+ 
 ### 2.8 Taxonomy attributes
 If the dataset encompasses taxonomic information at least two new variables are added. The taxonomy_key variable is only added if the user also provides the taxonomic keys. 
 If an EBVCube netCDF holds taxonomic information, the ebv_entity_classification_name and ebv_entity_classification_url, associated to the entity variable, point to the taxonomic backbone and its URL. 
@@ -263,13 +271,6 @@ If an EBVCube netCDF holds taxonomic information, the ebv_entity_classification_
 |taxonomy_key| units |Fixed value: '1' for 'unity' (udunits)|CF|No|-|
 |taxonomy_key| long_name |The name of the taxonomic key from the authority of the taxonomic backbone. For example, if your taxonomy is based on the [GBIF Backbone Taxonomy](https://www.gbif.org/dataset/d7dddbf4-2cf0-4f39-9b2a-bb099caae36c) the value could be "usageKey".|EBV|Yes|Yes|
 
-|Level |Attribute|Comment|Convention|User Input|Mandatory|
-| --- |  --- | --- | --- |--- | --- |
-| crs | grid_mapping_name | String value that contains the mapping’s name, e.g., WGS84 has the value 'latitude_longitude'.  | CF |No|-|
-| crs | * | Attributes that define a specific mapping depend on the value of ‘grid_mapping_name’ (FGDC "Content Standard for Digital Geospatial Metadata"), e.g., for WGS84: ‘longitude_of_prime_meridian’, ‘semi_major_axis’ and ‘inverse_flattening’.| CF|No|-|
-| crs | spatial_ref |  WKT2 representation of CRS |GDAL|No|-|
-| crs | GeoTransform |  GeoTransform array: 'x_ul x_res x_rotation y_ul y_rotation y_res' |GDAL|No|-|
-| crs | long_name | Fixed value: 'CRS definition'|CF| No|-|
 
 <a name='taxonomy'></a> 
 ## 3. Taxonomy
