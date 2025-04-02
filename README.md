@@ -252,6 +252,19 @@ All attributes regarding the georeferencing can be found at the 'crs' variable i
 
 FYI: In principle, you can assign all CRSs available in the PROJ library to an EBVCube netCDF. The only restriction is currently the visualization in the map of the EBV Data Portal by the company GeoEngine, which only works for EPSG-based CRSs.  
 
+### 2.8 Taxonomy attributes
+If the dataset encompasses taxonomic information at least two new variables are added. The taxonomy_key variable is only added if the user also provides the taxonomic keys. 
+
+|Level |Attribute|Comment|Convention|User Input|Mandatory|
+| --- |  --- | --- | --- |--- | --- |
+|taxonomy_levels| units |Fixed value: '1' for 'unity' (udunits)|CF|No|-|
+|taxonomy_table| units |Fixed value: '1' for 'unity' (udunits)|CF|No|-|
+|taxonomy_key| units |Fixed value: '1' for 'unity' (udunits)|CF|No|-|
+|taxonomy_key| long_name |The name of the taxonomic key from the authority of the taxonomic backbone. For example, if your taxonomy is based on the [GBIF Backbone Taxonomy](https://www.gbif.org/dataset/d7dddbf4-2cf0-4f39-9b2a-bb099caae36c) the value could be "usageKey".|EBV|Yes|Yes|
+
+
+ebv_entity_classification_name
+ebv_entity_classification_url 
 |Level |Attribute|Comment|Convention|User Input|Mandatory|
 | --- |  --- | --- | --- |--- | --- |
 | crs | grid_mapping_name | String value that contains the mapping’s name, e.g., WGS84 has the value 'latitude_longitude'.  | CF |No|-|
