@@ -283,7 +283,7 @@ For example the [Occurrence Metrics for Invasive Alien Species of Union Concern 
 The ebvcube R package retrieves the taxonomic information for you (see below), and it is also displayed per dataset on the EBV Data Portal detail pages. Further developments are currently underway. This encompasses for example the display of the taxonomy in the [EBVCubeVisualizer](https://github.com/EBVcube/EBVCubeVisualizer) and the integration into the EBV Data Portal API.
 
 ### 3.2 Technical representation
-To store the taxonomic information two netCDF variables (character arrays) are added to the netCDF. The 'taxonomy_levels' and the 'taxonomy_table'. 
+To store the taxonomic information two netCDF variables (character arrays) are added to the netCDF. The 'entity_taxonomy_levels' and the 'entity_taxonomy_table'. 
 
 The 'entity_taxonomy_levels' is a 2D array (dimensions: nchar_taxonlist, taxonlevel) that hold the names of the different taxonomy levels, e.g. 'species', 'genus', 'family', 'order', 'class', 'phylum' and 'kingdom'.
 The 'entity_taxonomy_table' is a 3D array (dimensions: nchar, entity, taxonlevel) that hold the values of all taxonomy levels per entity, e.g. for one entity 'Accipiter brevipes', 'Accipiter', 'Accipitridae', 'Accipitriformes', 'Aves', 'Chordata' and 'Animalia'.
