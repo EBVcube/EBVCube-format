@@ -285,11 +285,11 @@ The ebvcube R package retrieves the taxonomic information for you (see below), a
 ### 3.2 Technical representation
 To store the taxonomic information two netCDF variables (character arrays) are added to the netCDF. The 'entity_taxonomy_levels' and the 'entity_taxonomy_table'. 
 
-The 'entity_taxonomy_levels' is a 2D array (dimensions: nchar_taxonlist, taxonlevel) that hold the names of the different taxonomy levels, e.g. 'species', 'genus', 'family', 'order', 'class', 'phylum' and 'kingdom'.
-The 'entity_taxonomy_table' is a 3D array (dimensions: nchar, entity, taxonlevel) that hold the values of all taxonomy levels per entity, e.g. for one entity 'Accipiter brevipes', 'Accipiter', 'Accipitridae', 'Accipitriformes', 'Aves', 'Chordata' and 'Animalia'.
+The 'entity_taxonomy_levels' is a 2D array (dimensions: nchar_taxonlist, taxonlevel) that holds the names of the different taxonomy levels, e.g. 'species', 'genus', 'family', 'order', 'class', 'phylum' and 'kingdom'.
+The 'entity_taxonomy_table' is a 3D array (dimensions: nchar, entity, taxonlevel) that holds the values of all taxonomy levels per entity, e.g. for one entity 'Accipiter brevipes', 'Accipiter', 'Accipitridae', 'Accipitriformes', 'Aves', 'Chordata' and 'Animalia'.
 A schematic representation can be found in [example 3](#example3).
 
-FYI: these variables were called 'entity_levels' and 'entity_list' until R package version 0.4.0. The renaming was done in the beginning of April in 2025. The R package is able to handle both namings. 
+FYI: these variables were called 'entity_levels' and 'entity_list' until R package version 0.4.0. The renaming was done in the beginning of April in 2025. The later R package version are able to handle both namings. 
 
 ### 3.3 Read taxonomy with R and Python
 To get the taxonomic information with R run the following code:
