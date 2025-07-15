@@ -230,7 +230,7 @@ The [time](https://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-c
 |Level |Attribute|Comment|Convention|User Input|Mandatory|
 | --- |  --- | --- | --- |--- | --- |
 | time | axis | Fixed value:  'T' | CF |No|-|
-| time | calender | Fixed value: 'standard' (Gregorian) | CF|No|-|
+| time | calendar | Fixed value: 'standard' (Gregorian) | CF|No|-|
 | time | units | Fixed value:  'days since 1860-01-01 00:00:00.0' | CF |No|-|
 | time | long_name | Fixed value:  'time' | CF |No|-|
 | time | _ChunkSizes |internal netCDF attribute | netCDF Convention|No|-|
