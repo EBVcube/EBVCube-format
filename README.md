@@ -1,4 +1,8 @@
 # EBVCube-format
+Citation: [![DOI](https://zenodo.org/badge/844998790.svg)](https://doi.org/10.5281/zenodo.17199083)
+
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+
 This document defines the EBVCube format. This specification was developed at the [Biodiversity and Conservation](https://www.idiv.de/research/core-research-groups/biodiversity-conservation/) core group at iDiv: Luise Quoß <a href="https://orcid.org/0000-0002-9910-1252" target="_top"><img alt="ORCID iD" src="https://cran.r-project.org/web/orcid.svg" style="width:16px; height:16px; margin-left:4px; margin-right:4px; vertical-align:middle"></a>, 
 Christian Langer <a href="https://orcid.org/0000-0003-1446-3527" target="_top"><img alt="ORCID iD" src="https://cran.r-project.org/web/orcid.svg" style="width:16px; height:16px; margin-left:4px; margin-right:4px; vertical-align:middle"></a>, 
 Lina Estupinan Suarez <a href="https://orcid.org/0000-0002-2359-9496" target="_top"><img alt="ORCID iD" src="https://cran.r-project.org/web/orcid.svg" style="width:16px; height:16px; margin-left:4px; margin-right:4px; vertical-align:middle"></a>, 
