@@ -225,7 +225,7 @@ The [lat](https://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-co
 | lon | long_name | 'lon' |CF|No|-|
 | lat | axis | Fixed value: 'Y' |CF|No|-|
 | lat | units | 'degree_north' or 'meter' |CF|No|-|
-| lat | standard_name | 'latitude' or 'projection_x_coordinate' |CF|No|-|
+| lat | standard_name | 'latitude' or 'projection_y_coordinate' |CF|No|-|
 | lat | long_name | 'lat' |CF|No|-|
 
 ### 2.5 Temporal attributes
