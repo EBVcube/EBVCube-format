@@ -188,7 +188,8 @@ The global [netCDF attributes](https://cfconventions.org/Data/cf-conventions/cf-
 |Root| keywords |A comma-separated list of key words and/or phrases.|ACDD|Yes|No|
 |Root|  ebv_vocabulary | URL to controlled vocabulary for ebv_class and ebv_name. Fixed value: 'https://portal.geobon.org/api/v1/ebv' |EBV|No|-|
 |Root|  ebv_cube_dimensions |Fixed value: 'lon, lat, time, entity' |EBV|No|-|
-|Root |   history |Provides an audit trail for modifications to the original data. |ACDD, CF, netCDF Convention|No|-|
+|Root | ebv_cube_metadata_version | Version of the EBVCube format specification used for structuring the dataset. Fixed value: '1.1.0'.|EBV|No|Yes|
+|Root | history |Provides an audit trail for modifications to the original data. |ACDD, CF, netCDF Convention|No|-|
 
 ### 2.2 Scenario and metric attributes
 The scenario and the metric are [netCDF groups](https://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-conventions.html#groups). They are nested. The scenario is the higher level, but unlike the metric, it is not mandatory. The metrics are repeated in all scenarios (if applicable). The following attribtues are found at the metric- and scenario-level. These attributes can also be found in the JSON files.
